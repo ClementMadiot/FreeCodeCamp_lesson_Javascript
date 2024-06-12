@@ -94,4 +94,21 @@ function showResults(userOption) {
 
 showResults();
 
-function resetGame() {}
+resetGameBtn.addEventListener('click', () => {
+  resetGame()
+});
+
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
+
+  playerScoreSpanElement.innerText = playerScore
+  computerScoreSpanElement.innerText = computerScore
+
+  optionsContainer.style.display = "flex";
+  optionsContainer.style.flexDirection = "column";
+  resetGameBtn.style.display = "none";
+
+  roundResultsMsg.innerText = " "
+  winnerMsgElement.innerText = " "
+}
