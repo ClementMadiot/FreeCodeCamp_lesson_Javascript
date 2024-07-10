@@ -175,9 +175,9 @@ const deleteSong = (id) => {
 
     resetButton.addEventListener("click", () => {
       userData.songs = [...allSongs];
-      renderSongs(sortSongs()) // render the songs again in alphabetical order.
-      setPlayButtonAccessibleText() // update the play button accessible text
-      resetButton.remove()
+      renderSongs(sortSongs()); // render the songs again in alphabetical order.
+      setPlayButtonAccessibleText(); // update the play button accessible text
+      resetButton.remove();
     });
   }
 };
@@ -243,8 +243,6 @@ const renderSongs = (array) => {
 const getCurrentSongIndex = () =>
   userData?.songs.indexOf(userData?.currentSong);
 
-// const getCurrentSongIndex = () => userData?.songs.indexOf(userData?.currentSong);
-
 // Evenement on click
 playButton.addEventListener("click", () => {
   if (userData?.currentSong === null) {
@@ -262,7 +260,21 @@ previousButton.addEventListener("click", playPreviousSong);
 
 shuffleButton.addEventListener("click", shuffle);
 
-// playlistSongDelete.addEventListener("click", deleteSong)
+audio.addEventListener("ended", () => {
+  const currentSongIndex = getCurrentSongIndex();
+  // const nextSongExists = userData?.songs[currentSongIndex + 1] !== undefined;
+  const nextSongExists = currentSongIndex && userData.songs.length - 1 ? currentSongIndex < userData.songs.length - 1 : false
+  if(nextSongExists){
+    playNextSong()
+  } else {
+    userData.currentSong = null
+    userData.songCurrentTime = 0
+    pauseSong()
+    setPlayerDisplay()
+    highlightCurrentSong()
+    setPlayButtonAccessibleText()
+  }
+});
 
 // order song
 const sortSongs = () => {
