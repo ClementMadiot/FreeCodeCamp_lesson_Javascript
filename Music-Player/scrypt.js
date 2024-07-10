@@ -103,7 +103,7 @@ const playSong = (id) => {
   playButton.classList.add("playing");
   highlightCurrentSong();
   setPlayerDisplay();
-  setPlayButtonAccessibleText()
+  setPlayButtonAccessibleText();
   audio.play();
 };
 
@@ -135,8 +135,17 @@ const playPreviousSong = () => {
 };
 
 const shuffle = () => {
-  userData?.songs.sort(() => Math.random() - 0.5)
-}
+  const shuffleSong = userData?.songs.sort(() => Math.random() - 0.5);
+
+  userData.currentSong = null;
+  userData.songCurrentTime = 0;
+
+  renderSongs(userData?.songs);
+  setPlayerDisplay();
+  setPlayButtonAccessibleText();
+  playSong(shuffleSong[0].id);
+  // pauseSong()
+};
 
 // display current song title & artist
 const setPlayerDisplay = () => {
@@ -215,6 +224,8 @@ pauseButton.addEventListener("click", pauseSong);
 nextButton.addEventListener("click", playNextSong);
 
 previousButton.addEventListener("click", playPreviousSong);
+
+shuffleButton.addEventListener("click", shuffle);
 
 // order song
 const sortSongs = () => {
