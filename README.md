@@ -77,4 +77,8 @@ This project cover concepts such as the **getDate()**, **getMonth()**, and **get
 In this project, I build a set of football team cards and learn about **nested objects**, **object destructuring**, and **default parameters**.
 This project cover concepts like, **default parameters, Object.freeze()**, and reinforce my knowledge of the **switch statement** and **map()** method.
 
+## Todo-App: Learn localStorage by Building a Todo App, Not started
+
+In this TODO application, I learn how to handle form inputs, manage local storage, perform CRUD (Create, Read, Update, Delete) operations on tasks, implement event listeners, and toggle UI elements.
+
 </details>
