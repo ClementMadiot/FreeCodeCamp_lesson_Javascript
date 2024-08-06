@@ -11,7 +11,8 @@ const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
 //This array will store all the tasks along with their associated data, including title, due date, and description.
-const taskData = [];
+/// const taskData = [];
+const taskData = JSON.parse(localStorage.getItem("data")) || []
 // This variable will be used to track the state when editing and discarding tasks.
 let currentTask = {};
 
@@ -25,7 +26,9 @@ openTaskFormBtn.addEventListener("click", () => {
 closeTaskFormBtn.addEventListener("click", () => {
   // check if there is a value in the titleInput, dateInput or descriptionInput field.
   const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value
-  if(formInputsContainValues){
+  // check on edit if the user change fields
+  const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description
+  if(formInputsContainValues && formInputValuesUpdated){
     // Call the showModal() method on the confirmCloseDialog element. Display a modal with the Discard and Cancel buttons.
     confirmCloseDialog.showModal()
   }  else {
@@ -54,7 +57,12 @@ const addOrUpdateTask = () => {
   // console.log(taskObj)
   if (dataArrIndex === -1) {
     taskData.unshift(taskObj);
+  } else {
+    taskData[dataArrIndex] = taskObj
   }
+  // localStorage
+  localStorage.setItem("data", JSON.stringify(taskData))
+
   updateTaskContainer()
   reset()
 }
@@ -78,12 +86,19 @@ const updateTaskContainer = () => {
 const deleteTask = (buttonEl) => {
   const dataArrIndex = taskData.findIndex((item) => item.id === buttonEl.parentElement.id)
   buttonEl.parentElement.remove();
+  // remove the deleted task from taskData
   taskData.splice(dataArrIndex, 1);
+  localStorage.setItem("data", JSON.stringify(taskData))
 }
 
 const editTask = (buttonEl) => {
   const dataArrIndex = taskData.findIndex((item) => item.id === buttonEl.parentElement.id)
-  
+  currentTask = taskData[dataArrIndex]
+  titleInput.value = currentTask.title
+  dateInput.value = currentTask.date
+  descriptionInput.value = currentTask.description
+  addOrUpdateTaskBtn.innerText = "Update Task"
+  taskForm.classList.toggle("hidden")
 }
 
 taskForm.addEventListener("submit", (e) => {
@@ -102,4 +117,10 @@ const reset = () => {
   descriptionInput.value = ""
   taskForm.classList.toggle("hidden")
   currentTask = {}
+
+  addOrUpdateTaskBtn.innerText = "Add Task"
+}
+
+if(taskData.length){
+  updateTaskContainer()
 }
