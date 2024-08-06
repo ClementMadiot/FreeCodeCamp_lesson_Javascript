@@ -81,4 +81,8 @@ This project cover concepts like, **default parameters, Object.freeze()**, and r
 
 In this TODO application, I learn how to handle form inputs, manage local storage, perform CRUD (Create, Read, Update, Delete) operations on tasks, implement event listeners, and toggle UI elements.
 
+## Decimal-to-binary: Learn Recursion by Building a Decimal to Binary Converter
+
+I build a decimal-to-binary converter using JavaScript. I learn the fundamental concepts of **recursion**, explore the **call stack**, and build out a visual representation of the **recursion process** through an animation.
+
 </details>
