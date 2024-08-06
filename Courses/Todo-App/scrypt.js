@@ -15,6 +15,7 @@ const taskData = [];
 // This variable will be used to track the state when editing and discarding tasks.
 let currentTask = {};
 
+
 //* Opening and closing form modal
 
 openTaskFormBtn.addEventListener("click", () => {
@@ -22,8 +23,14 @@ openTaskFormBtn.addEventListener("click", () => {
 });
 
 closeTaskFormBtn.addEventListener("click", () => {
-  // I call the showModal() method on the confirmCloseDialog element. This will display a modal with the Discard and Cancel buttons.
-  confirmCloseDialog.showModal();
+  // check if there is a value in the titleInput, dateInput or descriptionInput field.
+  const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value
+  if(formInputsContainValues){
+    // Call the showModal() method on the confirmCloseDialog element. Display a modal with the Discard and Cancel buttons.
+    confirmCloseDialog.showModal()
+  }  else {
+    reset()
+  }    
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -33,13 +40,10 @@ cancelBtn.addEventListener("click", () => {
 
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
-  taskForm.classList.toggle("hidden");
+  reset()
 });
-
-//* Get the values from the input fields, save them into the taskData array, and display them on the page.
-
-taskForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+//* Add the input values to taskData
+const addOrUpdateTask = () => {
   const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
   const taskObj = {
     id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
@@ -51,19 +55,51 @@ taskForm.addEventListener("submit", (e) => {
   if (dataArrIndex === -1) {
     taskData.unshift(taskObj);
   }
+  updateTaskContainer()
+  reset()
+}
+//* Adding the tasks to the DOM
+
+const updateTaskContainer = () => {
+  tasksContainer.innerHTML = ""
   taskData.forEach(({ id, title, date, description }) => {
-    tasksContainer.innerHTML += `
+    (tasksContainer.innerHTML += `
     <div id="${id}" class="task">
     <p><strong>Title:</strong>${title}</p>
     <p><strong>Date:</strong> ${date}</p>
     <p><strong>Description:</strong> ${description}</p>
-    <button type="button" class="btn">Edit</button>
-    <button type="button" class="btn">Delete</button>
+    <button type="button" class="btn" onclick="editTask(this)">Edit</button>
+    <button type="button" class="btn" onclick="deleteTask(this)">Delete</button>
     </div>
-    `;
-    taskForm.classList.toggle("hidden");
+    `)
   });
+}
+
+const deleteTask = (buttonEl) => {
+  const dataArrIndex = taskData.findIndex((item) => item.id === buttonEl.parentElement.id)
+  buttonEl.parentElement.remove();
+  taskData.splice(dataArrIndex, 1);
+}
+
+const editTask = (buttonEl) => {
+  const dataArrIndex = taskData.findIndex((item) => item.id === buttonEl.parentElement.id)
+  
+}
+
+taskForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  addOrUpdateTask()
 });
 
 // The findIndex() array method finds and returns the index of the first element in an array that meets the criteria specified by a provided testing function. If no such element is found, the method returns -1.
 // unshift() is an array method that is used to add one or more elements to the beginning of an array.
+
+//* clear the input fields after adding a task
+
+const reset = () => {
+  titleInput.value = ""
+  dateInput.value = ""
+  descriptionInput.value = ""
+  taskForm.classList.toggle("hidden")
+  currentTask = {}
+}
