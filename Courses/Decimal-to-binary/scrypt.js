@@ -4,30 +4,18 @@ const result = document.getElementById("result");
 
 // decimal to binary
 const decimalToBinary = (input) => {
-  /// Use the return keyword to return a string of the binary number representation of true. 1 is true, 0 is false
-  const inputs = [];
-  const quotients = [];
-  const remainders = [];
+  let binary = "";
 
   if (input === 0) {
-    result.innerText = "0"
-    return
+    binary = "0";
   }
-// convert to binary
-  while (input > 0) {
-    const quotient = Math.floor(input / 2);
-    const remainder = input % 2;
-    inputs.push(input);
-    quotients.push(quotient);
-    remainders.push(remainder);
-    
-    input = quotient;
-  }
-  console.log("Inputs: ", inputs);
-  console.log("Quotients: ", quotients);
-  console.log("Remainders: ", remainders);
 
-  result.innerText = remainders.reverse().join("")
+  while (input > 0) {
+    binary = (input % 2) + binary;
+    input = Math.floor(input / 2);
+  }
+
+  result.innerText = binary;
 };
 
 const checkUserInput = () => {
@@ -53,3 +41,35 @@ numberInput.addEventListener("keydown", (e) => {
     checkUserInput();
   }
 });
+
+
+// ------------------------------------------------- //
+
+// decimal to binary first version
+
+// const decimalToBinary = (input) => {
+//   /// Use the return keyword to return a string of the binary number representation of true. 1 is true, 0 is false
+//   const inputs = [];
+//   const quotients = [];
+//   const remainders = [];
+
+//   if (input === 0) {
+//     result.innerText = "0"
+//     return
+//   }
+// // convert to binary
+//   while (input > 0) {
+//     const quotient = Math.floor(input / 2);
+//     const remainder = input % 2;
+//     inputs.push(input);
+//     quotients.push(quotient);
+//     remainders.push(remainder);
+    
+//     input = quotient;
+//   }
+//   console.log("Inputs: ", inputs);
+//   console.log("Quotients: ", quotients);
+//   console.log("Remainders: ", remainders);
+
+//   result.innerText = remainders.reverse().join("")
+// }
