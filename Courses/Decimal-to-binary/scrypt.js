@@ -12,19 +12,38 @@ const decimalToBinary = (input) => {
   }
 };
 
+const showAnimation = () => {
+  setTimeout(() => {
+    console.log("free")
+  },500)
+  setTimeout(() => {
+    console.log("code")
+  },1000)
+  setTimeout(() => {
+    console.log("Camp")
+  },1500)
+}
+
 const checkUserInput = () => {
   // console.log(numberInput.value)
+
+  const inputInt = parseInt(numberInput.value);
   if (
     !numberInput.value ||
-    isNaN(parseInt(numberInput.value)) ||
-    parseInt(numberInput.value) < 0
+    isNaN(inputInt) ||
+    inputInt < 0
   ) {
     alert("Please provide a decimal number greater than or equal to 0");
     return;
   }
+  // convert the string into a number before comparing it to 5
+  if (inputInt === 5){
+    showAnimation();
+    return;
+  }
 
   /// I use the parseInt() function to convert the input into a number
-  result.textContent = decimalToBinary(parseInt(numberInput.value));
+  result.textContent = decimalToBinary(inputInt);
   numberInput.value = "";
 };
 
