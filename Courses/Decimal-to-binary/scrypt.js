@@ -4,18 +4,12 @@ const result = document.getElementById("result");
 
 // decimal to binary
 const decimalToBinary = (input) => {
-  let binary = "";
-
-  if (input === 0) {
-    binary = "0";
+  if(input === 0 || input === 1){
+    // String function convert a value into a string
+    return String(input)
+  }else {
+    return decimalToBinary(Math.floor(input / 2)) + (input % 2)
   }
-
-  while (input > 0) {
-    binary = (input % 2) + binary;
-    input = Math.floor(input / 2);
-  }
-
-  result.innerText = binary;
 };
 
 const checkUserInput = () => {
@@ -30,7 +24,7 @@ const checkUserInput = () => {
   }
 
   /// I use the parseInt() function to convert the input into a number
-  decimalToBinary(parseInt(numberInput.value));
+  result.textContent = decimalToBinary(parseInt(numberInput.value));
   numberInput.value = "";
 };
 
@@ -73,3 +67,33 @@ numberInput.addEventListener("keydown", (e) => {
 
 //   result.innerText = remainders.reverse().join("")
 // }
+// ------------------------------------------------- //
+
+// decimal to binary second version
+
+/// function that will count down from a given number to zero using recursion.
+// const countDownAndUp = (number) => {
+//   console.log(number)
+ ///the if is a base case to stop the loop when number is equal to 0
+//   if (number === 0) {
+//     return;
+//   } else {
+//     countDownAndUp(number - 1);
+//   }
+
+// }
+// decimal to binary
+// const decimalToBinary = (input) => {
+//   let binary = "";
+
+//   if (input === 0) {
+//     binary = "0";
+//   }
+
+//   while (input > 0) {
+//     binary = (input % 2) + binary;
+//     input = Math.floor(input / 2);
+//   }
+
+//   result.innerText = binary;
+// };
