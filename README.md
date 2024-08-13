@@ -35,7 +35,7 @@
 
 ## <a name="courses">🎓 Courses</a>
 <details>
-<summary>Courses Palindrome Checker</summary>
+<summary>Project Certification: Palindrome Checker</summary>
 
 ## Gradebook App: Review JavaScript Fundamentals
 
@@ -63,7 +63,7 @@ I code a basic MP3 player. The project covers fundamental concepts such as handl
 </details>
 
 <details>
-<summary>Courses Roman Numeral Converter</summary>
+<summary>Project Certification: Roman Numeral Converter</summary>
 
 
 ## Date-Object: Learn the Date Object by Building a Date Formatter, Complete
@@ -84,5 +84,24 @@ In this TODO application, I learn how to handle form inputs, manage local storag
 ## Decimal-to-binary: Learn Recursion by Building a Decimal to Binary Converter
 
 I build a decimal-to-binary converter using JavaScript. I learn the fundamental concepts of **recursion**, explore the **call stack**, and build out a visual representation of the **recursion process** through an animation.
+
+</details>
+
+<details>
+<summary>Project Certification: Telephone Number Validator </summary>
+
+## Spam-filter: Learn Regular Expressions by Building a Spam Filter
+
+Regular expressions, often shortened to "regex" or "regexp", are patterns that help programmers match, search, and replace text. Regular expressions are powerful, but can be difficult to understand because they use so many special characters.
+
+In this spam filter project, I learn about capture groups, **positive lookaheads**, **negative lookaheads**, and other techniques to match any text I want.
+
+
+
+
+
+
+
+
 
 </details>
