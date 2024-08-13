@@ -1,0 +1,114 @@
+:root {
+  --white: #ffffff;
+  --gray: #d0d0d5;
+  --bg-dark-gray: #161628;
+  --br-blue: #0c60a4;
+  --form-bg: #2f2f3f;
+  --form-br: #181a1b;
+  --label: #E2E0DC;
+  --input-bg: #08081C;
+  --input-br: #333739;
+  --button-br:#a36201;
+  --error: #a94442;
+  --alert-clr: #850000;
+  --alert-bg: #ffadad;
+}
+
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  padding: 50px 20px;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  background-color: var(--bg-dark-gray);
+  color: var(--gray);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 350px;
+  font-family: 'Castoro Titling', cursive;
+  text-transform: uppercase;
+  color: var(--label);
+}
+main img{
+  margin-bottom: 20px;
+}
+
+form {
+  background-color: var(--form-bg);
+  margin: 0 25px;
+  border: 1px solid var(--form-br);
+}
+
+fieldset {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 25px;
+  margin: 10px 20px;
+  border: none;
+}
+
+label {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--label);
+  font-weight: bold;
+  width: 100%;
+}
+
+input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-br);
+  color: var(--gray-05);
+  font-size: 2.5rem;
+  margin: 10px 0;
+  padding: 6px 12px;
+  height: 60px;
+  line-height: 1.4;
+  width: 100%;
+}
+input:focus-visible{
+  outline:3px solid var(--br-blue);
+
+}
+button {
+  color: #ffffff;
+  background-image: linear-gradient(rgb(119, 85, 1), rgb(173, 103, 0));
+  border: 3px solid var(--button-br);
+  margin-top: 1rem;
+  padding: 10px 16px;
+  font-size: 23px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+}
+
+.alert {
+  font-size: 2rem;
+  background-color: var(--alert-bg);
+  border: 3px solid var(--alert-clr);
+  color: var(--alert-clr);
+}
+
+.hidden {
+  display: none;
+}
