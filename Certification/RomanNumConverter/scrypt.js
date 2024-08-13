@@ -1,45 +1,70 @@
-const number = document.getElementById('number');
-const convertBtn = document.getElementById('convert-btn');
-const output = document.getElementById('output');
+const number = document.getElementById("number");
+const convertBtn = document.getElementById("convert-btn");
+const output = document.getElementById("output");
 
-const romainNumber = [{
-  M: 1000,
-  CM: 900,
-  D:500,
-  CD: 400,
-  C:100,
-  XC: 90,
-  L:50,
-  XL: 40,
-  X:10,
-  IX: 9,
-  V:5,
-  IV: 4,
-  I:1
-}]
+const decimalToRoman = (num) => {
+  const romanNumerals = [
+    ["M", 1000],
+    ["CM", 900],
+    ["D", 500],
+    ["CD", 400],
+    ["C", 100],
+    ["XC", 90],
+    ["L", 50],
+    ["XL", 40],
+    ["X", 10],
+    ["IX", 9],
+    ["V", 5],
+    ["IV", 4],
+    ["I", 1],
+  ];
 
-const showMsg = (msg) => {
-  output.classList.remove('hidden')
-  output.classList.add('alert')
-  output.textContent = msg
-}
+  let result = "";
 
-const numeralConvert = (input) =>{
-if(input === ''){
-  showMsg('Please enter a valid number')
-} else if(input <= 0){
-  showMsg('Please enter a number greater than or equal to 1')
-} else if(input >= 4000){
-  showMsg('Please enter a number less than or equal to 3999')
-}
+  for (let i = 0; i < romanNumerals.length; i++) {
+    const [roman, value] = romanNumerals[i];
+    while (num >= value) {
+      result += roman;
+      num -= value;
+    }
+  }
+  return result;
+};
 
-// output.textContent = input
+const outputText = (input) => {
+  resetMsg();
+  // console.log(input);
+  if (input === "") {
+    alertMsg("Please enter a valid number");
+  } else if (input <= 0) {
+    alertMsg("Please enter a number greater than or equal to 1");
+  } else if (input >= 4000) {
+    alertMsg("Please enter a number less than or equal to 3999");
+  } else {
+    showMsg(decimalToRoman(input))
+    console.log(decimalToRoman(input))
+  } 
+    
+};
 
-}
-convertBtn.addEventListener('click', (e) => {
-e.preventDefault()
-numeralConvert(number.value)
-// output.classList.remove("hidden")
+// evenment on click
+convertBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  outputText(number.value);
 });
 
+// Message
+const resetMsg = () => {
+  output.classList.add("hidden");
+  output.classList.remove("alert");
+};
+const alertMsg = (msg) => {
+  output.classList.remove("hidden");
+  output.classList.add("alert");
+  output.textContent = msg;
+};
 
+const showMsg = (msg) => {
+  output.classList.remove("hidden");
+  output.textContent = msg;
+};

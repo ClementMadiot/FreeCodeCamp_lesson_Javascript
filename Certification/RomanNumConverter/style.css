@@ -4,11 +4,11 @@
   --bg-dark-gray: #161628;
   --br-blue: #0c60a4;
   --form-bg: #2f2f3f;
-  --form-br: #181a1b;
+  /* --form-br: #181a1b; */
   --label: #E2E0DC;
   --input-bg: #08081C;
   --input-br: #333739;
-  --button-br:#a36201;
+  --button-br: #a36201;
   --error: #a94442;
   --alert-clr: #850000;
   --alert-bg: #ffadad;
@@ -37,6 +37,7 @@ main {
   align-items: center;
   justify-content: center;
 }
+
 section {
   display: flex;
   flex-direction: column;
@@ -50,14 +51,15 @@ h1 {
   text-transform: uppercase;
   color: var(--label);
 }
-main img{
+
+main img {
   margin-bottom: 20px;
 }
 
 form,
 #output {
   background-color: var(--form-bg);
-  border: 1px solid var(--form-br);
+  border: 3px solid var(--white);
   max-width: 500px;
   font-size: 32px;
 }
@@ -83,7 +85,7 @@ label {
 
 input[type="number"] {
   background-color: var(--input-bg);
-  border: 1px solid var(--input-br);
+  border: 1px solid var(--white);
   color: var(--gray-05);
   font-size: 2.5rem;
   margin: 10px 0;
@@ -91,18 +93,19 @@ input[type="number"] {
   height: 60px;
   line-height: 1.4;
   width: 100%;
-  
+
 }
+
 input[type="number"]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button  {
-  background-color: var(--br-blue);
+input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-
-input:focus-visible{
-  outline:3px solid var(--br-blue);
+input:focus-visible {
+  outline: 3px solid var(--br-blue);
+  border: none;
 }
+
 button {
   color: #ffffff;
   background-image: linear-gradient(rgb(119, 85, 1), rgb(173, 103, 0));
