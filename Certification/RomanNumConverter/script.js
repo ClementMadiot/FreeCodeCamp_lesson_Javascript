@@ -22,9 +22,13 @@ const decimalToRoman = (num) => {
   let result = "";
 
   for (let i = 0; i < romanNumerals.length; i++) {
+    // Décompose l'élément courant du tableau en deux valeurs
     const [roman, value] = romanNumerals[i];
+    console.log(roman, value)
     while (num >= value) {
+      // Ajoute le chiffre romain roman à la chaîne de caractères
       result += roman;
+      //  Soustrait la valeur décimale 'value' du chiffre romain courant de la valeur 'num'.
       num -= value;
     }
   }
