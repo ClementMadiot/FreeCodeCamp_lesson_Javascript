@@ -37,6 +37,10 @@ main {
   align-items: center;
   justify-content: center;
 }
+section {
+  display: flex;
+  flex-direction: column;
+}
 
 h1 {
   text-align: center;
@@ -50,10 +54,12 @@ main img{
   margin-bottom: 20px;
 }
 
-form {
+form,
+#output {
   background-color: var(--form-bg);
-  margin: 0 25px;
   border: 1px solid var(--form-br);
+  max-width: 500px;
+  font-size: 32px;
 }
 
 fieldset {
@@ -75,7 +81,7 @@ label {
   width: 100%;
 }
 
-input {
+input[type="number"] {
   background-color: var(--input-bg);
   border: 1px solid var(--input-br);
   color: var(--gray-05);
@@ -85,10 +91,17 @@ input {
   height: 60px;
   line-height: 1.4;
   width: 100%;
+  
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button  {
+  background-color: var(--br-blue);
+  cursor: pointer;
+}
+
+
 input:focus-visible{
   outline:3px solid var(--br-blue);
-
 }
 button {
   color: #ffffff;
@@ -102,10 +115,17 @@ button {
   width: 100%;
 }
 
+#output {
+  margin-top: 25px;
+  min-height: 55px;
+  text-align: center;
+  padding: 1rem;
+  overflow-wrap: break-word;
+}
+
 .alert {
-  font-size: 2rem;
-  background-color: var(--alert-bg);
-  border: 3px solid var(--alert-clr);
+  background-color: var(--alert-bg) !important;
+  border: 3px solid var(--alert-clr) !important;
   color: var(--alert-clr);
 }
 
