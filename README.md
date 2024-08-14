@@ -96,7 +96,11 @@ Regular expressions, often shortened to "regex" or "regexp", are patterns that h
 
 In this spam filter project, I learn about capture groups, **positive lookaheads**, **negative lookaheads**, and other techniques to match any text I want.
 
+## Number-sorter : Learn Basic algorrithmic thinking by building a number sorter
 
+In this number sorter project, I learn how to implement and visualize different sorting algorithms like bubble sort, selection sort, and insertion sort – all with JavaScript.
+
+This project help me to understand the fundamental concepts behind these algorithms, and how I can apply them to sort numerical data in web applications.
 
 
 
