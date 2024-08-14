@@ -90,7 +90,7 @@ I build a decimal-to-binary converter using JavaScript. I learn the fundamental 
 <details>
 <summary>Project Certification: Telephone Number Validator </summary>
 
-## Spam-filter: Learn Regular Expressions by Building a Spam Filter
+## Regular-Expression: Learn Regular Expressions by Building a Spam Filter
 
 Regular expressions, often shortened to "regex" or "regexp", are patterns that help programmers match, search, and replace text. Regular expressions are powerful, but can be difficult to understand because they use so many special characters.
 
