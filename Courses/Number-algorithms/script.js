@@ -9,7 +9,9 @@ const sortInputArray = (event) => {
   /// choose the algorythme you want to use by change the function bellow
   // const sortedValues = bubbleSort(inputValues);
   // const sortedValues = selectionSort(inputValues);
-  const sortedValues = insertionSort(inputValues);
+  // const sortedValues = insertionSort(inputValues);
+  /// ascending order with sort method 
+  const sortedValues = inputValues.sort((a,b) => a - b);
 
   updateUI(sortedValues);
 };
