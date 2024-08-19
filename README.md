@@ -102,10 +102,11 @@ In this number sorter project, I learn how to implement and visualize different 
 
 This project help me to understand the fundamental concepts behind these algorithms, and how I can apply them to sort numerical data in web applications.
 
+## Calculator-stat : Learn Advanced Array Methods by Building a Statistics Calculator
 
+I want to get comfortable with array manipulation methods, such as **map()**, **reduce()**, and **filter()**.
 
-
-
+In this statistics calculator project, I gain experience with handling user input, DOM manipulation, and method chaining. I get practice by performing statistical calculations like mean, median, mode, variance, and standard deviation.
 
 
 </details>
