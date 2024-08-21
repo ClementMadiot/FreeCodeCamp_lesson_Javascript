@@ -84,8 +84,20 @@ const getRange = (array) => {
   return Math.max(...array) - Math.min(...array)
 }
 
+// ------------------------------------------------ //
+//* Variance calculation
+// ------------------------------------------------ //
+// The variance of a series represents how much the data deviates from the mean, and can be used to determine how spread out the data are. 
 
-
+const getVariance = (array) => {
+  const mean = getMean(array);
+  const variance = array.reduce((acc, el) => {
+    const difference = el - mean;
+    const squared = difference ** 2;
+    return acc + squared;
+  }, 0) / array.length;
+  return variance;
+}
 
 
 
@@ -96,3 +108,5 @@ const getRange = (array) => {
 //: A Set : is a data structure that only allows unique values. If you pass an array into the Set constructor, it will remove any duplicate values.
 
 //: Object.keys() method :  find the value that occurs with the highest frequency.
+
+//: Square a value = ⁠.. ** 2⁠ example → ⁠3 ** 2 = 9⁠
