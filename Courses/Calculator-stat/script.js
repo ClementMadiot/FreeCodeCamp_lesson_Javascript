@@ -3,6 +3,7 @@ const calculate = () => {
   const mean = document.querySelector("#mean");
   const median = document.querySelector("#median");
   const mode = document.querySelector("#mode");
+  const range = document.querySelector("#range");
 
   const value = document.querySelector("#numbers").value;
   console.log(value)
@@ -13,6 +14,7 @@ const calculate = () => {
   mean.textContent = getMean(numbers);
   median. textContent = getMedian(numbers)
   mode.textContent = getMode(numbers)
+  range.textContent = getRange(numbers)
   // console.log(getMode(numbers))
 
 }
@@ -72,8 +74,20 @@ const getMode = (array) => {
   // If multiple numbers in a series occur at the same highest frequency, they are all considered the mode. Otherwise, the mode is the number that occurs most often, that single number is the mode.
   const mode = Object.keys(counts).filter((el) => counts[el] === counts[highest]);
   return mode
-
 }
+
+// ------------------------------------------------ //
+//* Range calculation
+// ------------------------------------------------ //
+// The difference between the largest and smallest numbers in the list.
+const getRange = (array) => {
+  return Math.max(...array) - Math.min(...array)
+}
+
+
+
+
+
 
 // ------------------------------------------------ //
 //! Def 
