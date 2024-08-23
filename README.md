@@ -25,7 +25,7 @@
 
 [FR] Ce dépôt GitHub rassemble l'ensemble de mes projets réalisés dans le cadre des cours et certifications JavaScript de freeCodeCamp. Vous trouverez ici les exercices, les projets finaux et tout le code associé à mon parcours d'apprentissage.
 
-[ENG] This GitHub repository contains all my projects completed as part of freeCodeCamp's JavaScript courses and certifications. Here, you'll find exercises, final projects, and all the code associated with my learning journey.
+[ENG] This GitHub repository contains all my projects completed as part of freeCodeCamp's JavaScript courses and certifications. Here, I find exercises, final projects, and all the code associated with my learning journey.
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
@@ -108,5 +108,11 @@ I want to get comfortable with array manipulation methods, such as **map()**, **
 
 In this statistics calculator project, I gain experience with handling user input, DOM manipulation, and method chaining. I get practice by performing statistical calculations like mean, median, mode, variance, and standard deviation.
 
+## Spreedheet : Learn Functional Programming by Building a Spreadsheet
 
+Functional Programming is a popular approach to software development. In Functional Programming, developers organize code into smaller functions, then combine those functions to build complex programs.
+
+In this spreadsheet application project, I learn about **parsing** and **evaluating mathematical** expressions,**implementing spreadsheet** functions, **handling cell references**, and **creating interactive web interfaces**. I learn how to dynamically update the page based on user input.
+
+This project will cover concepts like the **map()**,**find()**, and **includes()** methods and the **parseInt()** function. 
 </details>
