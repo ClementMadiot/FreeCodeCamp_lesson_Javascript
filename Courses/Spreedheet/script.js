@@ -1,16 +1,75 @@
-//* Function to generate a range of numbers.
+//* Function built-in for calculation.
+const isEven = (num) => num % 2 === 0;
+const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
+/// return the average of all the numbers in the array.
+const average = (nums) => sum(nums) / nums.length;
+const median = (nums) => {
+  const sorted = nums.slice().sort((a, b) => a - b);
+  const length = sorted.length;
+  const middle = length / 2 - 1;
+  return isEven(length) ? average([middle]) : sorted([middle + 1]);
+};
 
-// Your array will need to be the size of the range. You can calculate this by finding the difference between end and start, and adding 1 to the result.
-const range = (start, end) => Array(end - start + 1).fill(start).map((element, index) => element + index);
+// Explication :
+// - sum function takes a nums parameter, which will be an array of numbers. Return the result of calling reduce on the array to sum all of the numbers.
+// - isEven function,takes a num parameter and returns true if the number is even, and false otherwise.
+// - average function takes an array of numbers as the nums parameter. Return the average of all the numbers in the array.
+// -  median arrow function that takes a nums parameter. This function will calculate the median value of an array of numbers.
 
+//* Object properties
+const spreadsheetFunctions = {
+  sum,
+  average,
+  median,
+};
+
+//* Function to generate a range of numbers
+// Your array will need to be the size of the range. Calculate this by finding the difference between end and start, and adding 1 to the result.
+const range = (start, end) =>
+  Array(end - start + 1)
+    .fill(start)
+    .map((element, index) => element + index);
+
+//* Function to generate a range of letters
+const charRange = (start, end) =>
+  range(start.charCodeAt(0), end.charCodeAt(0)).map((code) =>
+    String.fromCharCode(code)
+  );
+
+  //* Parse and evaluate the input string. 
+const evalFormula = (x, cells) => {
+  const idToText = (id) => cells.find((cell) => cell.id === id).value
+  const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi;
+};
 
 window.onload = () => {
   const container = document.getElementById("container");
   const createLabel = (name) => {
     const label = document.createElement("div");
-    label.className = "label"
+    label.className = "label";
     label.textContent = name;
     container.appendChild(label);
   };
+  const letters = charRange("A", "J");
+  letters.forEach(createLabel);
+  range(1, 99).forEach((number) => {
+    createLabel(number);
+    letters.forEach((letter) => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.id = letter + number;
+      input.ariaLabel = letter + number;
+      input.onchange = update;
+      container.appendChild(input);
+    });
+  });
+  // console.log(letters);
 };
 
+/// update event is running as a change event listener, the event parameter will be a change event.
+const update = (event) => {
+  const element = event.target;
+  const value = element.value.replace(/\s/g, "");
+  if (!value.includes(element.id) && value.startsWith("=")) {
+  }
+};
