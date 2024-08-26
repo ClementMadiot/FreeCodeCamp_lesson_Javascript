@@ -1,3 +1,10 @@
+//* Function infix 
+const infixToFunction = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+  "*": (x,y) => x * y,
+  "/": (x,y) => x / y
+}
 //* Function built-in for calculation.
 const isEven = (num) => num % 2 === 0;
 const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
