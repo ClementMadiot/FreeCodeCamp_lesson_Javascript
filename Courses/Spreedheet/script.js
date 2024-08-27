@@ -1,10 +1,33 @@
-//* Function infix 
+//* Function infix
 const infixToFunction = {
   "+": (x, y) => x + y,
   "-": (x, y) => x - y,
-  "*": (x,y) => x * y,
-  "/": (x,y) => x / y
-}
+  "*": (x, y) => x * y,
+  "/": (x, y) => x / y,
+};
+
+//* Function evaluate infix
+const infixEval = (str, regex) =>
+  str.replace(regex, (_match, arg1, operator, arg2) =>
+    infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
+  );
+
+  //* Function to account for order of operations
+  const highPrecedence = str => {
+    const regex = /([1-9][0-9]?)([*\/])([1-9][0-9]?)/;
+    // return regex.test(str); check the regex before continue
+    const str2 = infixEval(str, regex);
+    return str === str2 ? str : highPrecedence(str2);
+  };
+// console.log(highPrecedence("5*3")) // true
+
+
+// Explication :
+// The regex parameter will match two numbers with an operator between them.
+//The first number will be assigned to arg1 in the callback
+//The second to arg2, and the operator to operator.
+// Your callback function implicitly return the operator property of your infixToFunction object.
+
 //* Function built-in for calculation.
 const isEven = (num) => num % 2 === 0;
 const sum = (nums) => nums.reduce((acc, el) => acc + el, 0);
