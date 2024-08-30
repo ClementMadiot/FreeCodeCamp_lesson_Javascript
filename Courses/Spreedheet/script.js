@@ -12,15 +12,14 @@ const infixEval = (str, regex) =>
     infixToFunction[operator](parseFloat(arg1), parseFloat(arg2))
   );
 
-  //* Function to account for order of operations
-  const highPrecedence = str => {
-    const regex = /([1-9][0-9]?)([*\/])([1-9][0-9]?)/;
-    // return regex.test(str); check the regex before continue
-    const str2 = infixEval(str, regex);
-    return str === str2 ? str : highPrecedence(str2);
-  };
+//* Function to account for order of operations
+const highPrecedence = (str) => {
+  const regex = /([1-9][0-9]?)([*\/])([1-9][0-9]?)/;
+  // return regex.test(str); check the regex before continue
+  const str2 = infixEval(str, regex);
+  return str === str2 ? str : highPrecedence(str2);
+};
 // console.log(highPrecedence("5*3")) // true
-
 
 // Explication :
 // The regex parameter will match two numbers with an operator between them.
@@ -51,6 +50,17 @@ const spreadsheetFunctions = {
   sum,
   average,
   median,
+};
+
+const applyFunction = (str) => {
+  const noHigh = highPrecedence(str);
+  const infix = /([\d.]+)([+-])([\d.]+)/;
+  const str2 = infixEval(noHigh, infix);
+  const functionCall = /([a-z0-9]*)\(([0-9., ]*)\)(?!.*\()/i;
+  const toNumberList = (args) => args.split(",").map(parseFloat);
+  const apply = (fn, args) =>
+    spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
+  return str2.replace(functionCall, () => {});
 };
 
 //* Function to generate a range of numbers
@@ -84,6 +94,11 @@ const evalFormula = (x, cells) => {
   const cellExpanded = rangeExpanded.replace(cellRegex, (match) =>
     idToText(match.toUpperCase())
   );
+
+  const functionExpanded = applyFunction(cellExpanded);
+  return functionExpanded === x
+    ? functionExpanded
+    : evalFormula(functionExpanded, cells);
 };
 
 window.onload = () => {
@@ -115,5 +130,9 @@ const update = (event) => {
   const element = event.target;
   const value = element.value.replace(/\s/g, "");
   if (!value.includes(element.id) && value.startsWith("=")) {
+    element.value = evalFormula(
+      value.slice(1),
+      Array.from(document.getElementById("container").children)
+    );
   }
 };
