@@ -51,12 +51,12 @@ h1 {
   background: var(--form-bg);
   border: 14px solid var(--form-br);
   border-radius: 10px;
-  
+  width: 290px;
 }
 form {
   display: flex;
   flex-direction: column;
-  min-height: 460px;
+  height: 460px;
   justify-content: space-between;
 }
 
@@ -95,7 +95,7 @@ input {
   background: var(--input-bg);
   border: 1px solid var(--form-br);
   border-radius: 8px;
-  height: 42px;
+  height: 48px;
   text-align: center;
   font-size: 16px;
   color: var(--white);
@@ -121,4 +121,15 @@ button {
   padding: 2px 18px;
   color: var(--white);
   border-color: rgb(48, 52, 54);;
+}
+
+/* answer  */
+.hidden {
+  display: none;
+}
+#results-div{
+  font-size: 19px;
+  color: var(--gray-light);
+  margin-top: 2rem;
+  line-height: 1.8rem;
 }

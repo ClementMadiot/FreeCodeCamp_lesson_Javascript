@@ -18,6 +18,13 @@ const checkNumber = (el) => {
     ? (message = "Valid US number: " + el)
     : (message = "Invalid US number: " + el);
   console.log(message);
+  showMsg(message)
+};
+
+// message //
+const showMsg = (msg) => {
+  results.classList.remove("hidden");
+  results.textContent = msg;
 };
 
 // evenment on click //
