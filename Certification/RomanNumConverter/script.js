@@ -72,3 +72,56 @@ const showMsg = (msg) => {
   output.classList.remove("hidden");
   output.textContent = msg;
 };
+
+const usNumber = [
+  // work 
+  {
+    num: "555-5555",
+    valid: false,
+  },
+  {
+    num: "555-555-5555",
+    valid: true,
+  },
+  {
+    num: "55555555",
+    valid: false,
+  },
+  {
+    num: "123**&!!asdf#",
+    valid: false,
+  },
+  {
+    num: "55555555",
+    valid: false,
+  },
+  {
+    num: "1(555)555-5555",
+    valid: true,
+  },
+  {
+    num: "1 555-555-5555",
+    valid: true,
+  },
+  {
+    num: "(555)555-5555",
+    valid: true,
+  },
+  {
+    num: "1 555 555 5555",
+    valid: true,
+  },
+  {
+    num: "5555555555",
+    valid: true,
+  },
+  // in progress
+  {
+    num: "1 (555) 555-5555",
+    valid: true,
+  },
+  {
+    num: "1 555)555-5555",
+    valid: false,
+  },
+];
