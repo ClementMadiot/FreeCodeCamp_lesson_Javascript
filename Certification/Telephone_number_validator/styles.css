@@ -3,7 +3,7 @@
   --gray: #dad7d2;
   --gray-light: #e8e6e3;
   --black: #000000;
-  --bg-dark-gray: #161628;
+  --bg-dark-gray: #2f2f3f;
   --form-bg: #292d2e;
   --form-br: #8c8273;
   --label: #E2E0DC;
@@ -42,7 +42,7 @@ h1 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--gray-light);
-  margin: 2rem 0;
+  margin: 2rem 0 3rem;
 }
 
 
