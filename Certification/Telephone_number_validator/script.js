@@ -6,7 +6,7 @@ const results = document.getElementById("results-div");
 const checkNumber = (el) => {
   const numberRegex = /[\d() -]+/
   const validNumberRegex = 
-  /^(\d{1})?(?:[- ]?\(\d{3}\)[- ]?|[- ]?\d{3})[- ]?\d{3}[- ]?\d{4}$/;
+  /^(1)?(?:[- ]?\(\d{3}\)[- ]?|[- ]?\d{3})[- ]?\d{3}[- ]?\d{4}$/;
   let message = "";
 
   // first alert
@@ -39,3 +39,17 @@ clearBtn.addEventListener("click", (e) => {
   results.textContent = '';
   userInput.value = ""
 });
+
+
+// problem
+// 2 (757) 622-7382 "Invalid US number: 2 (757) 622-7382".
+
+//  0 (757) 622-7382 "Invalid US number: 0 (757) 622-7382".
+
+// 2 757 622-7382 "Invalid US number: 2 757 622-7382".
+
+// 27576227382 "Invalid US number: 27576227382".
+
+// 2(757)6227382 "Invalid US number: 2(757)6227382".
+
+// 2(757)622-7382 "Invalid US number: 2(757)622-7382".
