@@ -15,9 +15,8 @@ const checkNumber = (el) => {
   }
   // check phone number
   validNumberRegex.test(el)
-    ? (message = "Valid US number: " + el)
-    : (message = "Invalid US number: " + el);
-  console.log(message);
+    ? message = "Valid US number: " + el
+    : message = "Invalid US number: " + el
   showMsg(message)
 };
 
@@ -27,12 +26,16 @@ const showMsg = (msg) => {
   results.textContent = msg;
 };
 
+
 // evenment on click //
 checkBtn.addEventListener("click", (e) => {
   e.preventDefault();
   checkNumber(userInput.value);
 });
 
-clearBtn.addEventListener("click", () => {
-  userInput === "";
+clearBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  results.classList.add("hidden");
+  results.textContent = '';
+  userInput.value = ""
 });
