@@ -47,6 +47,7 @@ const median = (nums) => {
 
 //* Object properties
 const spreadsheetFunctions = {
+  '': nums => nums,
   sum,
   average,
   median,
@@ -58,6 +59,8 @@ const spreadsheetFunctions = {
   someeven: nums => nums.some(isEven),
   everyeven: nums => nums.every(isEven),
   random: ([x, y]) => Math.floor(Math.random() * y + x),
+  range: nums => range(...nums),
+  nodupes: nums => [...new Set(nums).values()]
 };
 
 const applyFunction = (str) => {
