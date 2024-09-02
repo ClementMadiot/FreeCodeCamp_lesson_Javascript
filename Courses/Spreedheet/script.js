@@ -50,6 +50,14 @@ const spreadsheetFunctions = {
   sum,
   average,
   median,
+  even: (nums) => nums.filter(isEven),
+  firsttwo: (nums) => nums.slice(0, 2),
+  lasttwo: (nums) => nums.slice(-2),
+  has2: (nums) => nums.value === 2 && "+",
+  increment: nums => nums.map((num) => num + 1 ),
+  someeven: nums => nums.some(isEven),
+  everyeven: nums => nums.every(isEven),
+  random: ([x, y]) => Math.floor(Math.random() * y + x),
 };
 
 const applyFunction = (str) => {
@@ -60,7 +68,11 @@ const applyFunction = (str) => {
   const toNumberList = (args) => args.split(",").map(parseFloat);
   const apply = (fn, args) =>
     spreadsheetFunctions[fn.toLowerCase()](toNumberList(args));
-  return str2.replace(functionCall, () => {});
+  return str2.replace(functionCall, (match, fn, args) =>
+    spreadsheetFunctions.hasOwnProperty(fn.toLowerCase())
+      ? apply(fn, args)
+      : match
+  );
 };
 
 //* Function to generate a range of numbers
@@ -136,3 +148,8 @@ const update = (event) => {
     );
   }
 };
+
+const numbers = [1, 2, 3, 4, 5];
+// Trouver le nombre du milieu d'un tableau avec un nombre impair
+const middleNumber = numbers[Math.floor(numbers.length / 2)];
+console.log(middleNumber); // 3
