@@ -122,7 +122,7 @@ This project will cover concepts like the **map()**,**find()**, and **includes()
 </details>
 
 <details>
-<summary>Project Certification: Cash Register </summary>
+<summary>4 Project Certification: Cash Register </summary>
 
 ## Shopping_cart : Learn Basic OOP by Building a Shopping Cart
 
