@@ -35,18 +35,22 @@
 
 ## <a name="courses">🎓 Courses</a>
 <details>
-<summary>Project Certification: Palindrome Checker</summary>
+<summary>1 Project Certification: Palindrome Checker</summary>
 
-## Gradebook App: Review JavaScript Fundamentals
+## Gradebook_App: Review JavaScript Fundamentals
 
 In this mini project, I get to review JavaScript fundamentals like **functions, variables, conditionals** and more by building a gradebook app.
 This give me an opportunity to solve small problems and get a better understanding of the basics.
 
-## Color Changer: Learn Basic Debugging by Building a Random Background Color Changer
+## RPG-Dragon-repeller : Learn Basic JavaScript by Building a Role Playing Game, Completed
+
+In this practice project, I learn fundamental programming concepts in JavaScript by coding my own Role Playing Game. I learn how to work with **arrays**, **strings**, **objects**, **functions**, **loops**, **if/else** statements, and more.
+
+## Random_background-color: Learn Basic Debugging by Building a Random Background Color Changer
 
 In this project, I help CamperBot to build a **random background color changer** and help him to find and fix errors.
 
-## Calorie Counter: Learn Form Validation
+## Calorie_counter: Learn Form Validation
 
 In this calorie counter project, I learn how to validate user input, perform calculations based on that input, and dynamically update I interface to display the results.
 In this practice project, I learn basic **regular expressions, template literals, the addEventListener() method**, and more.
@@ -63,7 +67,7 @@ I code a basic MP3 player. The project covers fundamental concepts such as handl
 </details>
 
 <details>
-<summary>Project Certification: Roman Numeral Converter</summary>
+<summary>2 Project Certification: Roman Numeral Converter</summary>
 
 
 ## Date-Object: Learn the Date Object by Building a Date Formatter, Complete
@@ -88,7 +92,7 @@ I build a decimal-to-binary converter using JavaScript. I learn the fundamental 
 </details>
 
 <details>
-<summary>Project Certification: Telephone Number Validator </summary>
+<summary>3 Project Certification: Telephone Number Validator </summary>
 
 ## Regular-Expression: Learn Regular Expressions by Building a Spam Filter
 
@@ -115,4 +119,17 @@ Functional Programming is a popular approach to software development. In Functio
 In this spreadsheet application project, I learn about **parsing** and **evaluating mathematical** expressions,**implementing spreadsheet** functions, **handling cell references**, and **creating interactive web interfaces**. I learn how to dynamically update the page based on user input.
 
 This project will cover concepts like the **map()**,**find()**, and **includes()** methods and the **parseInt()** function. 
+</details>
+
+<details>
+<summary>Project Certification: Cash Register </summary>
+
+## Shopping_cart : Learn Basic OOP by Building a Shopping Cart
+
+OOP, or Object Oriented Programming, is one of the major approaches to the software development process. In OOP, developers use objects and classes to structure their code.
+
+In this shopping cart project, I learn how to define **classes** and use them. I create class **instances and implement** methods for data manipulation.
+
+This project will cover concepts like the **ternary operator**, the **spread operator**, the **this keyword**, and more.
+
 </details>
