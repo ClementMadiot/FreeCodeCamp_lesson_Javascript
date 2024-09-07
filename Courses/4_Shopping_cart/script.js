@@ -1,25 +1,25 @@
-// containers 
+// containers
 const cartContainer = document.getElementById("cart-container");
 const productsContainer = document.getElementById("products-container");
 const dessertCards = document.getElementById("dessert-card-container");
-// buttons 
-const cartBtn = document.getElementById('cart-btn');
-const clearCartBtn = document.getElementById('clear-cart-btn');
+// buttons
+const cartBtn = document.getElementById("cart-btn");
+const clearCartBtn = document.getElementById("clear-cart-btn");
 // totals
-const totalNumberOfItems = document.getElementById('total-items'); 
-const cartSubTotal = document.getElementById('subtotal');
-const cartTaxes = document.getElementById('taxes');
-const cartTotal = document.getElementById('total');
+const totalNumberOfItems = document.getElementById("total-items");
+const cartSubTotal = document.getElementById("subtotal");
+const cartTaxes = document.getElementById("taxes");
+const cartTotal = document.getElementById("total");
 // display cart
-const showHideCartSpan = document.getElementById('show-hide-cart');
-let isCartShowing = false
+const showHideCartSpan = document.getElementById("show-hide-cart");
+let isCartShowing = false;
 
 const products = [
   {
     id: 1,
     name: "Vanilla Cupcakes (6 Pack)",
     price: 12.99,
-    category: "Cupcake"
+    category: "Cupcake",
   },
   {
     id: 2,
@@ -87,4 +87,67 @@ const products = [
     price: 12.99,
     category: "Cupcake",
   },
-]
+];
+
+products.forEach(({ name, id, price, category }) => {
+  // console.log(name, id, price, category));
+  dessertCards.innerHTML += `
+    <div class="dessert-card">
+    <h2>${name}</h2>
+    <p class="dessert-price">\$${price}</p>
+    <p class="product-category">Category: ${category}</p>
+    <button id=${id} class="btn add-to-cart-btn">Add to cart</button>
+    </div>
+  `;
+});
+
+class ShoppingCart {
+  constructor() {
+    this.items = [];
+    this.total = 0;
+    this.taxRate = 8.25;
+  }
+  // addItem: The first parameter, id, is the id of the product the user has added to their cart. The second parameter, products, is an array of product objects. By using a parameter instead of directly referencing your existing products array, this method will be more flexible if you wanted to add additional product lists in the future.
+  addItem(id, products) {
+    const product = products.find((item) => item.id === id);
+    console.log(product);
+    const { name, price } = product; // destructuring variables
+    this.items.push(product);
+    this.items.forEach((dessert) => {});
+    const totalCountPerProduct = {};
+    this.items.forEach((dessert) => {
+      totalCountPerProduct[dessert.id] =
+        (totalCountPerProduct[dessert.id] || 0) + 1;
+    });
+    const currentProductCount = totalCountPerProduct[product.id];
+    const currentProductCountSpan = document.getElementById(
+      `product-count-for-id${product.id}`
+    );
+
+    currentProductCount > 1
+      ? (currentProductCountSpan.textContent = `${currentProductCount}x`)
+      : (productsContainer.innerHTML += `
+    <div id="dessert${id}" class="product">
+      <p><span class="product-count" id="product-count-for-id${id}">${name}</span></p>
+      <p>${price}</p>
+    </div>
+    `);
+  }
+}
+
+const cart = new ShoppingCart()
+const addToCartBtns = document.getElementsByClassName('add-to-cart-btn');
+
+[...addToCartBtns].forEach(
+  (btn) => {
+    btn.addEventListener("click", (event) => {
+      cart.addItem(Number(event.target.id), products);
+    })
+  }
+);
+console.log(addToCartBtns)
+
+cartBtn.addEventListener("click", () => {
+  isCartShowing = !isCartShowing;
+
+});
