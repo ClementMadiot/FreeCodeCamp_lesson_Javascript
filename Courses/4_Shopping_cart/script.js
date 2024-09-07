@@ -113,7 +113,6 @@ class ShoppingCart {
     console.log(product);
     const { name, price } = product; // destructuring variables
     this.items.push(product);
-    this.items.forEach((dessert) => {});
     const totalCountPerProduct = {};
     this.items.forEach((dessert) => {
       totalCountPerProduct[dessert.id] =
@@ -135,19 +134,19 @@ class ShoppingCart {
   }
 }
 
-const cart = new ShoppingCart()
-const addToCartBtns = document.getElementsByClassName('add-to-cart-btn');
+const cart = new ShoppingCart();
+const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
 
-[...addToCartBtns].forEach(
-  (btn) => {
-    btn.addEventListener("click", (event) => {
-      cart.addItem(Number(event.target.id), products);
-    })
-  }
-);
-console.log(addToCartBtns)
+[...addToCartBtns].forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    cart.addItem(Number(event.target.id), products);
+  });
+});
+// console.log(addToCartBtns);
 
 cartBtn.addEventListener("click", () => {
   isCartShowing = !isCartShowing;
-
+  showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
+  // display it
+  cartContainer.style.display = isCartShowing ? "block" : "none"
 });
