@@ -133,25 +133,36 @@ class ShoppingCart {
     `);
   }
 
-  // show how many item in show cart 
+  // show how many item in show cart
   getCounts() {
-    return this.items.length
+    return this.items.length;
   }
 
   // clear their cart
-  clearCart(){
-    if(!this.items.length){ // check if the length of the items array is 0
-      alert("Your shopping cart is already empty")
-      return
+  clearCart() {
+    if (!this.items.length) {
+      // check if the length of the items array is 0
+      alert("Your shopping cart is already empty");
+      return;
     }
-    const isCartCleared = confirm("Are you sure you want to clear all items from your shopping cart?")
-  }
+    const isCartCleared = confirm(
+      "Are you sure you want to clear all items from your shopping cart?"
+    );
 
+    if (isCartCleared) {
+      this.items = [];
+      this.total = 0;
+      productsContainer.innerHTML = "";
+      totalNumberOfItems.textContent = 0;
+      cartSubTotal.textContent = 0;
+      cartTaxes.textContent = 0;
+      cartTotal.textContent = 0;
+    }
+  }
 
   // calculate the taxes
   calculateTaxes(amount) {
-    return parseFloat(((this.taxRate / 100) * amount).toFixed(2))
-
+    return parseFloat(((this.taxRate / 100) * amount).toFixed(2));
   }
 
   // update the total price
@@ -162,7 +173,7 @@ class ShoppingCart {
     cartSubTotal.textContent = `$${subTotal.toFixed(2)}`;
     cartTaxes.textContent = `$${tax.toFixed(2)}`;
     cartTotal.textContent = `$${this.total.toFixed(2)}`;
-    return this.total
+    return this.total;
   }
 }
 
@@ -172,8 +183,8 @@ const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
 [...addToCartBtns].forEach((btn) => {
   btn.addEventListener("click", (event) => {
     cart.addItem(Number(event.target.id), products);
-    totalNumberOfItems.textContent = cart.getCounts()
-    cart.calculateTotal()
+    totalNumberOfItems.textContent = cart.getCounts();
+    cart.calculateTotal();
   });
 });
 // console.log(addToCartBtns);
@@ -182,5 +193,8 @@ cartBtn.addEventListener("click", () => {
   isCartShowing = !isCartShowing;
   showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
   // display it
-  cartContainer.style.display = isCartShowing ? "block" : "none"
+  cartContainer.style.display = isCartShowing ? "block" : "none";
 });
+
+// clear cart
+clearCartBtn.addEventListener('click', cart.clearCart.bind(cart));
