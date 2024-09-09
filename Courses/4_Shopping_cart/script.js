@@ -92,12 +92,12 @@ const products = [
 products.forEach(({ name, id, price, category }) => {
   // console.log(name, id, price, category));
   dessertCards.innerHTML += `
-    <div class="dessert-card">
+    <di class="dessert-card">
     <h2>${name}</h2>
     <p class="dessert-price">\$${price}</p>
     <p class="product-category">Category: ${category}</p>
     <button id=${id} class="btn add-to-cart-btn">Add to cart</button>
-    </div>
+    </di>
   `;
 });
 
@@ -110,7 +110,7 @@ class ShoppingCart {
   // addItem: The first parameter, id, is the id of the product the user has added to their cart. The second parameter, products, is an array of product objects. By using a parameter instead of directly referencing your existing products array, this method will be more flexible if you wanted to add additional product lists in the future.
   addItem(id, products) {
     const product = products.find((item) => item.id === id);
-    console.log(product);
+    // console.log(product);
     const { name, price } = product; // destructuring variables
     this.items.push(product);
     const totalCountPerProduct = {};
@@ -132,6 +132,38 @@ class ShoppingCart {
     </div>
     `);
   }
+
+  // show how many item in show cart 
+  getCounts() {
+    return this.items.length
+  }
+
+  // clear their cart
+  clearCart(){
+    if(!this.items.length){ // check if the length of the items array is 0
+      alert("Your shopping cart is already empty")
+      return
+    }
+    const isCartCleared = confirm("Are you sure you want to clear all items from your shopping cart?")
+  }
+
+
+  // calculate the taxes
+  calculateTaxes(amount) {
+    return parseFloat(((this.taxRate / 100) * amount).toFixed(2))
+
+  }
+
+  // update the total price
+  calculateTotal() {
+    const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+    const tax = this.calculateTaxes(subTotal);
+    this.total = subTotal + tax;
+    cartSubTotal.textContent = `$${subTotal.toFixed(2)}`;
+    cartTaxes.textContent = `$${tax.toFixed(2)}`;
+    cartTotal.textContent = `$${this.total.toFixed(2)}`;
+    return this.total
+  }
 }
 
 const cart = new ShoppingCart();
@@ -140,6 +172,8 @@ const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
 [...addToCartBtns].forEach((btn) => {
   btn.addEventListener("click", (event) => {
     cart.addItem(Number(event.target.id), products);
+    totalNumberOfItems.textContent = cart.getCounts()
+    cart.calculateTotal()
   });
 });
 // console.log(addToCartBtns);
