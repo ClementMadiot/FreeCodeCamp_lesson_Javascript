@@ -43,13 +43,30 @@ class Player {
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
-      if(this.position.y < 0){
-        this.position.y = 0
-        this.velocity.y = gravity
+      if (this.position.y < 0) {
+        this.position.y = 0;
+        this.velocity.y = gravity;
       }
       this.velocity.y += gravity;
     } else {
       this.velocity.y = 0;
     }
+    // ensure that the player stays within the boundaries of the canvas screen
+    if (this.position.x < this.width) {
+      this.position.x = this.width;
+    }
+    // ensure that the player's x position will never exceed the right edge of the canvas.
+    if (this.position.x >= canvas.width - this.width * 2) {
+      this.position.x = canvas.width - this.width * 2;
+    }
   }
 }
+const player = new Player();
+
+const startGame = () => {
+  canvas.style.display = "block";
+  startScreen.style.display = "none";
+  player.draw();
+}
+
+startBtn.addEventListener('click', startGame);
