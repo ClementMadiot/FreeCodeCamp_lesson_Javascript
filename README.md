@@ -132,4 +132,8 @@ In this shopping cart project, I learn how to define **classes** and use them. I
 
 This project will cover concepts like the **ternary operator**, the **spread operator**, the **this keyword**, and more.
 
+## Platformer_game Learn Intermediate OOP by Building a Platformer Game
+
+In this platformer game project, I continue to learn about classes, objects, inheritance, and encapsulation. I also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability.
+
 </details>
