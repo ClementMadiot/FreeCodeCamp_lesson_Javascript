@@ -100,4 +100,34 @@ const keys = {
 }
 
 // Responsible for moving the player across the screen.
-const movePlayer = (key,xVelocity, isPressed) => {}
+const movePlayer = (key,xVelocity, isPressed) => {
+  if(!isCheckpointCollisionDetectionActive){
+    player.velocity.x = 0;
+    player.velocity.y = 0;
+    return
+  }
+  switch (key) {
+    case "ArrowLeft":
+      keys.leftKey.pressed = isPressed
+      if(xVelocity === 0){
+        player.velocity.x = xVelocity
+      }
+      player.velocity.x -= xVelocity
+      break;
+    case "ArrowUp":
+    case "Spacebar":
+    case " ":
+      player.velocity.y -= 8
+      break;
+    case "ArrowRight":
+      keys.rightKey.pressed = isPressed
+      if(xVelocity === 0){
+        player.velocity.x = xVelocity
+      }
+      player.velocity.x += xVelocity
+      break;
+  
+    default:
+      break;
+  }
+}
