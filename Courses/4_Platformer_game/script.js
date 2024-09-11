@@ -70,3 +70,34 @@ const startGame = () => {
 }
 
 startBtn.addEventListener('click', startGame);
+
+// moving player across the screen
+const animate = () => {
+  // update the animation on the screen.
+  requestAnimationFrame(animate);
+  //  clear the canvas before rendering the next frame of the animation.
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  // update the player's position as it moves 
+  player.update();
+  
+  if(keys.rightKey.pressed && player.position.x < proportionalSize(400)){
+    player.velocity.x = 5
+  } else if(keys.leftKey.pressed && player.position.x > proportionalSize(100)){
+    player.velocity.x = -5
+  } else {
+    player.velocity.x = 0
+  }
+}
+
+// Player movement
+const keys = {
+  rightKey: {
+    pressed: false
+  },
+  leftKey: {
+    pressed: false
+  },
+}
+
+// Responsible for moving the player across the screen.
+const movePlayer = (key,xVelocity, isPressed) => {}
