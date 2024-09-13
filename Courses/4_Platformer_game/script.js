@@ -93,7 +93,10 @@ const platformPositions = [
   {x: 4700, y: proportionalSize(150)}
 ]
 
-
+// list of new platforms
+const platforms = platformPositions.map(
+  platform => new Platform(platform.x, platform.y)    
+)
 
 
 const startGame = () => {
@@ -109,6 +112,12 @@ const animate = () => {
   requestAnimationFrame(animate);
   //  clear the canvas before rendering the next frame of the animation.
   ctx.clearRect(0,0,canvas.width, canvas.height)
+
+  // draw the platforms
+  platforms.forEach(platform => {
+    platform.draw();
+  })
+
   // update the player's position as it moves 
   player.update();
   
@@ -119,6 +128,35 @@ const animate = () => {
   } else {
     player.velocity.x = 0
   }
+  if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
+    platforms.forEach(platform => platform.position.x -= 5)
+  } else if(keys.leftKey.pressed && isCheckpointCollisionDetectionActive){
+    platforms.forEach(platform => platform.position.x += 5)
+  }
+  // detect collision between player and platform
+  platforms.forEach(platform => {
+    const collisionDetectionRules = [
+      player.position.y + player.height <= platform.position.y,
+      player.position.y + player.height + player.velocity.y >= platform.position.y,
+      player.position.x >= platform.position.x - player.width / 2,
+      player.position.x <= platform.position.x + platform.width - player.width / 3
+    ];
+    if(collisionDetectionRules.every(el => el)){
+      player.velocity.y = 0
+      return
+    }
+  })
+}
+
+const platformDetectionRules = [
+  player.position.x >= platform.position.x - player.width / 2,
+  player.position.x <= platform.position.x + platform.width - player.width / 3,
+  player.position.y + player.height >= platform.position.y,
+  player.position.y <= platform.position.y + platform.height,
+];
+if(platformDetectionRules.every(rule => rule)){
+  player.position.y = platform.position.y + player.height;
+  player.velocity.y = gravity
 }
 
 // Player movement
