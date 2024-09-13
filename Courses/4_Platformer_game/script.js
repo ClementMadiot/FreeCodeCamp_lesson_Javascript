@@ -118,12 +118,31 @@ const platforms = platformPositions.map(
   platform => new Platform(platform.x, platform.y)    
 )
 
+// checkpoint position
+const checkpointPositions = [
+  {x: 1170, y: proportionalSize(80), z: 1},
+  {x: 2900, y: proportionalSize(330), z: 2},
+  {x: 4800, y: proportionalSize(80), z: 3}
+]
+
+// create a list of new checkpoint
+const checkpoints = checkpointPositions.map((checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z))
 
 const startGame = () => {
   canvas.style.display = "block";
   startScreen.style.display = "none";
   // player.draw();
   animate();
+}
+// show the checkpoint message
+const showCheckpointScreen = (msg) => {
+  checkpointScreen.style.display = "block";
+  checkpointMessage.textContent = msg;
+  if(isCheckpointCollisionDetectionActive){
+    setTimeout(() => {
+      checkpointScreen.style.display = "none";
+    }, 2000)
+  }
 }
 
 // moving player across the screen
@@ -138,6 +157,11 @@ const animate = () => {
     platform.draw();
   })
 
+  // draw the checkpoints
+  checkpoints.forEach(checkpoint => {
+    checkpoint.draw();
+  })
+
   // update the player's position as it moves 
   player.update();
   
@@ -150,8 +174,14 @@ const animate = () => {
   }
   if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
     platforms.forEach(platform => platform.position.x -= 5)
+    checkpoints.forEach(checkpoint => {
+      checkpoint.position.x -= 5
+    })
   } else if(keys.leftKey.pressed && isCheckpointCollisionDetectionActive){
     platforms.forEach(platform => platform.position.x += 5)
+    checkpoints.forEach(checkpoint => {
+      checkpoint.position.x += 5
+    })
   }
   // detect collision between player and platform
   platforms.forEach(platform => {
@@ -228,3 +258,4 @@ const movePlayer = (key,xVelocity, isPressed) => {
   window.addEventListener('keyup', ({ key }) => {
     movePlayer(key, 0, false)
   })
+
