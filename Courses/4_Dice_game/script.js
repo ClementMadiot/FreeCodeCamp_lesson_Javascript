@@ -15,9 +15,51 @@ const rulesBtn = document.getElementById("rules-btn");
 
 let diceValuesArr = [];
 let isModalShowing = false;
-let rolls = 0
-let score = 0
-let round = 1
-console.log(rolls)
-rulesBtn.addEventListener('click', () => {
+let rolls = 0;
+let score = 0;
+let round = 1;
+
+const rollDice = () => {
+  diceValuesArr = [];
+  // boucle pour générer 5 valeurs de dés aléatoires
+  for (let i = 0; i < 5; i++) {
+    const randomDice = Math.floor(Math.random() * 6) + 1;
+    diceValuesArr.push(randomDice);
+  }
+  // afficher les valeurs de dés dans le DOM
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index];
+  });
+};
+// update the score
+const updateStats = () => {
+  rollsElement.textContent = rolls;
+  roundElement.textContent = round
+}
+
+const updateRadioOptions = (index, score) => {
+  scoreInputs[index].disabled = false;
+  scoreInputs[index].value = score;
+  scoreSpans[index].textContent = `score = ${score}`;
+}
+
+//button event listeners
+rollDiceBtn.addEventListener("click", () => {
+  rollDice();
+  rolls++;
+// condition pour désactiver le bouton après 3 lancers
+  if (rolls >= 3) {
+    alert("You have rolled the dice three times!");
+    rollDiceBtn.disabled = true;
+  }
+  updateStats()
+});
+rulesBtn.addEventListener("click", () => {
+  isModalShowing = !isModalShowing;
+  isModalShowing
+    ? (rulesContainer.style.display = "block")
+    : (rulesContainer.style.display = "none");
+  isModalShowing
+    ? (rulesBtn.innerHTML = "Show rules")
+    : (rulesBtn.innerHTML = "Hide rules");
 });
