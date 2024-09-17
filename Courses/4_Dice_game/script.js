@@ -31,6 +31,8 @@ const rollDice = () => {
     dice.textContent = diceValuesArr[index];
   });
 };
+
+//* 1. Update the game
 /// update the score
 const updateStats = () => {
   rollsElement.textContent = rolls;
@@ -52,7 +54,9 @@ const updateScore = (selectedValue, achieved) => {
   scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`;
 };
 
-/// Count how many times each number is found in the array.
+//* 2. Radio button options
+
+/// get the highest duplicates
 const getHighestDuplicates = (arr) => {
   const counts = {}; // stocker les valeurs de dés et leur fréquence
   // Comptage des occurrences de chaque valeur de dés
@@ -65,7 +69,6 @@ const getHighestDuplicates = (arr) => {
   }
   // Recherche du nombre le plus fréquent:
   let highestCount = 0;
-
   for (const num of arr) {
     const count = counts[num];
     if (count >= 3 && count > highestCount) {
@@ -77,7 +80,6 @@ const getHighestDuplicates = (arr) => {
   }
   // Calcul de la somme totale des valeurs de dés
   const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
-  // console.log("sumOfAllDice", sumOfAllDice);
   //Mise à jour des options radio
   if (highestCount >= 4) {
     updateRadioOption(1, sumOfAllDice);
@@ -87,6 +89,7 @@ const getHighestDuplicates = (arr) => {
   }
   updateRadioOption(5, 0);
 };
+
 const detectFullHouse = (arr) => {
   const counts = {}; // stocker les valeurs de dés et leur fréquence
 
@@ -100,6 +103,28 @@ const detectFullHouse = (arr) => {
     updateRadioOption(5, 0);
   }
 };
+
+const checkForStraights = (arr) => {
+  const sortedArr = arr.sort((a, b) => a - b);
+  const uniqueArr = [...new Set(sortedArr)].join("");
+
+  const smallStraight = ["1234", "2345", "3456"];
+  const largeStraight = ["12345", "23456"];
+  console.log(uniqueArr);
+
+  const isSmallStraight = smallStraight.some(straight => straight === uniqueArr);
+  const isLargeStraight = largeStraight.some(straight => straight === uniqueArr)
+  if (isLargeStraight) {
+    updateRadioOption(4, 40);
+    updateRadioOption(3, 30);
+  }
+  if (isSmallStraight) {
+    updateRadioOption(3, 30);
+  }
+  updateRadioOption(5, 0);
+};
+
+//* 3. Reset the game
 
 /// Reset score value
 const resetRadioOptions = () => {
@@ -127,6 +152,7 @@ const ressetGame = () => {
   resetRadioOptions();
 };
 
+//* 4. Event listeners
 /// button event listeners
 rollDiceBtn.addEventListener("click", () => {
   // condition pour désactiver le bouton après 3 lancers
@@ -139,6 +165,7 @@ rollDiceBtn.addEventListener("click", () => {
     updateStats();
     getHighestDuplicates(diceValuesArr);
     detectFullHouse(diceValuesArr);
+    checkForStraights(diceValuesArr);
   }
 });
 
