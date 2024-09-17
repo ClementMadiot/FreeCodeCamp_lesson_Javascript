@@ -31,7 +31,7 @@ const rollDice = () => {
     dice.textContent = diceValuesArr[index];
   });
 };
-// update the score
+/// update the score
 const updateStats = () => {
   rollsElement.textContent = rolls;
   roundElement.textContent = round;
@@ -43,10 +43,18 @@ const updateRadioOption = (index, score) => {
   scoreSpans[index].textContent = ` score = ${score}`;
 };
 
-// Count how many times each number is found in the array.
+// keep score selected
+const updateScore = (selectedValue, achieved) => {
+  score += parseInt(selectedValue);
+  totalScoreElement.textContent = score;
+
+  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`;
+};
+
+/// Count how many times each number is found in the array.
 const getHighestDuplicates = (arr) => {
   const counts = {}; // stocker les valeurs de dés et leur fréquence
-// Comptage des occurrences de chaque valeur de dés
+  // Comptage des occurrences de chaque valeur de dés
   for (const num of arr) {
     if (counts[num]) {
       counts[num]++;
@@ -54,7 +62,7 @@ const getHighestDuplicates = (arr) => {
       counts[num] = 1;
     }
   }
-// Recherche du nombre le plus fréquent:
+  // Recherche du nombre le plus fréquent:
   let highestCount = 0;
 
   for (const num of arr) {
@@ -68,6 +76,7 @@ const getHighestDuplicates = (arr) => {
   }
   // Calcul de la somme totale des valeurs de dés
   const sumOfAllDice = arr.reduce((a, b) => a + b, 0);
+  // console.log("sumOfAllDice", sumOfAllDice);
   //Mise à jour des options radio
   if (highestCount >= 4) {
     updateRadioOption(1, sumOfAllDice);
@@ -78,18 +87,31 @@ const getHighestDuplicates = (arr) => {
   updateRadioOption(5, 0);
 };
 
-//button event listeners
+/// Reset score value
+const resetRadioOptions = () => {
+  scoreInputs.forEach((input) => {
+    input.disabled = true;
+    input.checked = false;
+  });
+  scoreSpans.forEach((span) => {
+    span.textContent = "";
+  });
+};
+
+/// button event listeners
 rollDiceBtn.addEventListener("click", () => {
-  rollDice();
-  rolls++;
   // condition pour désactiver le bouton après 3 lancers
   if (rolls >= 3) {
     alert("You have rolled the dice three times!");
     rollDiceBtn.disabled = true;
   }
+  rollDice();
+  resetRadioOptions();
+  rolls++;
   getHighestDuplicates(diceValuesArr);
   updateStats();
 });
+/// modal rules
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
   isModalShowing
@@ -98,4 +120,41 @@ rulesBtn.addEventListener("click", () => {
   isModalShowing
     ? (rulesBtn.innerHTML = "Show rules")
     : (rulesBtn.innerHTML = "Hide rules");
+});
+
+keepScoreBtn.addEventListener("click", () => {
+  let selectedValue;
+  let achieved;
+
+  for (const radioButton of scoreInputs) {
+    if (radioButton.checked) {
+      selectedValue = radioButton.value;
+      achieved = radioButton.id;
+      break;
+    }
+  }
+  if (selectedValue) {
+    rolls = 0;
+    round++;
+    updateStats();
+    resetRadioOptions();
+    updateScore(selectedValue, achieved);
+  } else {
+    alert("Please select a score option!");
+  }
+  if (round === 6) {
+    setTimeout(() => {
+      alert("Game Over! Your total score is " + score);
+    }, 500);
+    console.log(round);
+  }
+  // const selectedOption = Array.from(scoreInputs).find(input => input.checked);
+  // // console.log(selectedOption.value, selectedOption.id);
+  // if(selectedOption){
+  //   updateStats()
+  //   updateScore(selectedOption.value, selectedOption.id);
+  //   resetRadioOptions()
+  // } else {
+  //   alert("Please select a score option!");
+  // }
 });
