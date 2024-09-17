@@ -37,13 +37,14 @@ const updateStats = () => {
   roundElement.textContent = round;
 };
 
+/// update button radio options
 const updateRadioOption = (index, score) => {
   scoreInputs[index].disabled = false;
   scoreInputs[index].value = score;
   scoreSpans[index].textContent = ` score = ${score}`;
 };
 
-// keep score selected
+/// keep score selected
 const updateScore = (selectedValue, achieved) => {
   score += parseInt(selectedValue);
   totalScoreElement.textContent = score;
@@ -98,6 +99,21 @@ const resetRadioOptions = () => {
   });
 };
 
+///reset the game after all rounds
+const ressetGame = () => {
+  listOfAllDice.forEach((dice) => {
+    dice.textContent = 0;
+  });
+  rolls = 0;
+  score = 0;
+  round = 1;
+  totalScoreElement.textContent = 0
+  scoreHistory.innerHTML = "";
+  rollsElement.textContent = rolls;
+  roundElement.textContent = round;
+  resetRadioOptions();
+}
+
 /// button event listeners
 rollDiceBtn.addEventListener("click", () => {
   // condition pour désactiver le bouton après 3 lancers
@@ -145,8 +161,8 @@ keepScoreBtn.addEventListener("click", () => {
   if (round === 6) {
     setTimeout(() => {
       alert("Game Over! Your total score is " + score);
+      ressetGame()
     }, 500);
-    console.log(round);
   }
   // const selectedOption = Array.from(scoreInputs).find(input => input.checked);
   // // console.log(selectedOption.value, selectedOption.id);
