@@ -87,6 +87,19 @@ const getHighestDuplicates = (arr) => {
   }
   updateRadioOption(5, 0);
 };
+const detectFullHouse = (arr) => {
+  const counts = {}; // stocker les valeurs de dés et leur fréquence
+
+  for (const num of arr) {
+    counts[num] = (counts[num] || 0) + 1;
+  }
+  const values = Object.values(counts);
+  if (values.includes(3) && values.includes(2)) {
+    updateRadioOption(2, 25);
+  } else {
+    updateRadioOption(5, 0);
+  }
+};
 
 /// Reset score value
 const resetRadioOptions = () => {
@@ -107,26 +120,28 @@ const ressetGame = () => {
   rolls = 0;
   score = 0;
   round = 1;
-  totalScoreElement.textContent = 0
+  totalScoreElement.textContent = 0;
   scoreHistory.innerHTML = "";
   rollsElement.textContent = rolls;
   roundElement.textContent = round;
   resetRadioOptions();
-}
+};
 
 /// button event listeners
 rollDiceBtn.addEventListener("click", () => {
   // condition pour désactiver le bouton après 3 lancers
-  if (rolls >= 3) {
-    alert("You have rolled the dice three times!");
-    rollDiceBtn.disabled = true;
+  if (rolls === 3) {
+    alert("You have made three rolls this round. Please select a score.");
+  } else {
+    rolls++;
+    resetRadioOptions();
+    rollDice();
+    updateStats();
+    getHighestDuplicates(diceValuesArr);
+    detectFullHouse(diceValuesArr);
   }
-  rollDice();
-  resetRadioOptions();
-  rolls++;
-  getHighestDuplicates(diceValuesArr);
-  updateStats();
 });
+
 /// modal rules
 rulesBtn.addEventListener("click", () => {
   isModalShowing = !isModalShowing;
@@ -161,7 +176,7 @@ keepScoreBtn.addEventListener("click", () => {
   if (round === 6) {
     setTimeout(() => {
       alert("Game Over! Your total score is " + score);
-      ressetGame()
+      ressetGame();
     }, 500);
   }
   // const selectedOption = Array.from(scoreInputs).find(input => input.checked);
