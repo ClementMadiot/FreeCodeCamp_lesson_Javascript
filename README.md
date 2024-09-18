@@ -136,7 +136,7 @@ This project will cover concepts like the **ternary operator**, the **spread ope
 
 In this platformer game project, I continue to learn about classes, objects, inheritance, and encapsulation. I also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability.
 
-## : Review Algorithmic Thinking by Building a Dice Game
+## Dice_game : Review Algorithmic Thinking by Building a Dice Game
 
 Algorithmic thinking involves the ability to break down complex problems into a sequence of well-defined, step-by-step instructions.
 In this Dice game project, I learn how to manage game state, implement game logic for rolling dice, keeping score, and applying rules for various combinations.

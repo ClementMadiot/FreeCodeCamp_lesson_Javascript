@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Cash Register Project</title>
+  </head>
+  <body>
+    <main>
+      <img
+        src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg"
+        class="fcc-logo"
+        width="266"
+        height="30"
+        alt="freecodecamp"
+      />
+      <h1>Cash Register Project</h1>
+      <form>
+        <div class="change-due"></div>
+        <label for="cash">Enter cash fom customer:</label>
+        <input id="cash" type="number" />
+        <button id="purchase-btn" type="submit">Purchase</button>
+      </form>
+      <section class="container">
+        <!-- 1 container  -->
+        <article class="container-total">
+          <p class="price-total">Total: $3.26</p>
+          <div class="connector blue"></div>
+        </article>
+
+        <!-- 2 container  -->
+        <article class="container-register blue">
+          <div class="container-cube">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+          </div>
+          <div class="container-info">
+            <h2>Change in drawer:</h2>
+            <p>Pennies: $1.01</p>
+            <p>Nickels: $2.05</p>
+            <p>Dimes: $3.1</p>
+            <p>Quarters: $4.25</p>
+            <p>Ones: $90</p>
+            <p>Fives: $55</p>
+            <p>Tens: $20</p>
+            <p>Twenties: $60</p>
+            <p>Hundreds: $100</p>
+          </div>
+        </article>
+        <!-- 3 container  -->
+        <article class="container-bottom blue">
+          <div class="circle"></div>
+        </article>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
