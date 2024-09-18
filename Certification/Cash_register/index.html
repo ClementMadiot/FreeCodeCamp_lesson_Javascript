@@ -16,21 +16,21 @@
         alt="freecodecamp"
       />
       <h1>Cash Register Project</h1>
-      <form>
-        <div class="change-due"></div>
+      <article class="input-section">
+        <div id="change-due"></div>
         <label for="cash">Enter cash fom customer:</label>
         <input id="cash" type="number" />
-        <button id="purchase-btn" type="submit">Purchase</button>
-      </form>
+        <button id="purchase-btn" type="button">Purchase</button>
+      </article>
       <section class="container">
         <!-- 1 container  -->
         <article class="container-total">
-          <p class="price-total">Total: $3.26</p>
+          <p id="price-total" class="price-total"></p>
           <div class="connector blue"></div>
         </article>
 
         <!-- 2 container  -->
-        <article class="container-register blue">
+        <article id="container-register" class="container-register blue">
           <div class="container-cube">
             <div class="cube"></div>
             <div class="cube"></div>
@@ -42,17 +42,8 @@
             <div class="cube"></div>
             <div class="cube"></div>
           </div>
-          <div class="container-info">
-            <h2>Change in drawer:</h2>
-            <p>Pennies: $1.01</p>
-            <p>Nickels: $2.05</p>
-            <p>Dimes: $3.1</p>
-            <p>Quarters: $4.25</p>
-            <p>Ones: $90</p>
-            <p>Fives: $55</p>
-            <p>Tens: $20</p>
-            <p>Twenties: $60</p>
-            <p>Hundreds: $100</p>
+          <div id="container-info">
+            
           </div>
         </article>
         <!-- 3 container  -->
