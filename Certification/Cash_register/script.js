@@ -1,133 +1,127 @@
-// dynamic elements
-const cash = document.getElementById("cash");
-const purchaseBtn = document.getElementById("purchase-btn");
-const displayChangeDue = document.getElementById("change-due");
-const priceTotal = document.getElementById("price-total");
-const containerInfo = document.getElementById("container-info");
-
-
-let price = 3.26; // price of the item,
+let price = 3.26;
 let cid = [
-  // cash-in-drawer
-  ["PENNY", 1.01],
-  ["NICKEL", 2.05],
-  ["DIME", 3.1],
-  ["QUARTER", 4.25],
-  ["ONE", 90],
-  ["FIVE", 55],
-  ["TEN", 20],
-  ["TWENTY", 60],
-  ["ONE HUNDRED", 100],
+  ['PENNY', 1.01],
+  ['NICKEL', 2.05],
+  ['DIME', 3.1],
+  ['QUARTER', 4.25],
+  ['ONE', 90],
+  ['FIVE', 55],
+  ['TEN', 20],
+  ['TWENTY', 60],
+  ['ONE HUNDRED', 100]
 ];
 
-// format
+const displayChangeDue = document.getElementById('change-due');
+const cash = document.getElementById('cash');
+const purchaseBtn = document.getElementById('purchase-btn');
+const priceTotal = document.getElementById('price-total');
+const cashDrawerDisplay = document.getElementById('cash-drawer-display');
+
 const formatResults = (status, change) => {
   displayChangeDue.innerHTML = `<p>Status: ${status}</p>`;
   change.map(
-    (item) => (displayChangeDue.innerHTML += `<p>${item[0]}: ${item[1]}</p>`)
+    money => (displayChangeDue.innerHTML += `<p>${money[0]}: $${money[1]}</p>`)
   );
   return;
 };
 
-//check cash
-const checkCash = () => {
-  // if the customer has enough money to purchase the item
+const checkCashRegister = () => {
   if (Number(cash.value) < price) {
-    alert("Customer does not have enough money to purchase the item");
-    cash.value = "";
+    alert('Customer does not have enough money to purchase the item');
+    cash.value = '';
     return;
   }
-  // if the customer has enough money to purchase the item
+
   if (Number(cash.value) === price) {
-    displayChangeDue.innerHTML = "No change due - customer paid with exact cash";
-    cash.value = "";
+    displayChangeDue.innerHTML =
+      '<p>No change due - customer paid with exact cash</p>';
+    cash.value = '';
     return;
   }
 
   let changeDue = Number(cash.value) - price;
   let reversedCid = [...cid].reverse();
   let denominations = [100, 20, 10, 5, 1, 0.25, 0.1, 0.05, 0.01];
-  let result = { status: "OPEN", change: [] };
-  let totalCid = parseFloat(
+  let result = { status: 'OPEN', change: [] };
+  let totalCID = parseFloat(
     cid
-      .map((total) => total[1])
-      .reduce((acc, curr) => acc + curr)
+      .map(total => total[1])
+      .reduce((prev, curr) => prev + curr)
       .toFixed(2)
   );
-  // check if the cash-in-drawer is less than the change due
-  if (totalCid < changeDue) {
-    result.status = "CLOSED";
+
+  if (totalCID < changeDue) {
+    return (displayChangeDue.innerHTML = '<p>Status: INSUFFICIENT_FUNDS</p>');
   }
 
-  if (totalCid === changeDue) {
-    result.status = "CLOSED";
+  if (totalCID === changeDue) {
+    result.status = 'CLOSED';
   }
-  // loop through the cash-in-drawer
-  for (let i = 0; i < reversedCid.length; i++) {
+
+  for (let i = 0; i <= reversedCid.length; i++) {
     if (changeDue >= denominations[i] && changeDue > 0) {
-      let amount = 0;
-      while (reversedCid[i][1] > 0 && changeDue >= denominations[i]) {
-        reversedCid[i][1] -= denominations[i];
-        changeDue = parseFloat((changeDue - denominations[i]).toFixed(2));
-        amount++;
+      let count = 0;
+      let total = reversedCid[i][1];
+      while (total > 0 && changeDue >= denominations[i]) {
+        total -= denominations[i];
+        changeDue = parseFloat((changeDue -= denominations[i]).toFixed(2));
+        count++;
       }
-      if (amount > 0) {
-        result.change.push([reversedCid[i][0], amount * denominations[i]]);
+      if (count > 0) {
+        result.change.push([reversedCid[i][0], count * denominations[i]]);
       }
     }
   }
-
   if (changeDue > 0) {
-    return displayChangeDue.innerHTML = `<p>Status: INSUFFICIENT_FUNDS</p>`;
+    return (displayChangeDue.innerHTML = '<p>Status: INSUFFICIENT_FUNDS</p>');
   }
 
   formatResults(result.status, result.change);
   updateUI(result.change);
 };
 
-const checkResult = () => {
+const checkResults = () => {
   if (!cash.value) {
     return;
   }
-  checkCash();
+  checkCashRegister();
 };
 
-const updateUI = (change) => {
-  const currencyName = {
-    PENNY: "Pennies",
-    NICKEL: "Nickels",
-    DIME: "Dimes",
-    QUARTER: "Quarters",
-    ONE: "Ones",
-    FIVE: "Fives",
-    TEN: "Tens",
-    TWENTY: "Twenties",
-    "ONE HUNDRED": "One Hundreds",
+const updateUI = change => {
+  const currencyNameMap = {
+    PENNY: 'Pennies',
+    NICKEL: 'Nickels',
+    DIME: 'Dimes',
+    QUARTER: 'Quarters',
+    ONE: 'Ones',
+    FIVE: 'Fives',
+    TEN: 'Tens',
+    TWENTY: 'Twenties',
+    'ONE HUNDRED': 'Hundreds'
   };
-// Update cid array
-  if(change) {
-    change.forEach(arr => {
-      const targetArr = cid.find(cidArr => cidArr[0] === arr[0]);
-      targetArr[1] = parseFloat((targetArr[1] - arr[1]).toFixed(2));
+  // Update cid if change is passed in
+  if (change) {
+    change.forEach(changeArr => {
+      const targetArr = cid.find(cidArr => cidArr[0] === changeArr[0]);
+      targetArr[1] = parseFloat((targetArr[1] - changeArr[1]).toFixed(2));
     });
   }
 
-  cash.value = ''
-  priceTotal.innerHTML = `Total: $${price}`;
-  containerInfo.innerHTML = `<h2>Change in drawer:</h2>
-  ${cid.map((arr, index) => {
-    return `<p key=${index}>${currencyName[arr[0]]}: $${arr[1]}</p>`;
-  }
-).join('')} 
-  `
-}
+  cash.value = '';
+  priceTotal.textContent = `Total: $${price}`;
+  cashDrawerDisplay.innerHTML = `<p><strong>Change in drawer:</strong></p>
+    ${cid
+      .map(money => `<p>${currencyNameMap[money[0]]}: $${money[1]}</p>`)
+      .join('')}  
+  `;
+};
 
-// addEventListener
-cash.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    checkCash();
+purchaseBtn.addEventListener('click', checkResults);
+
+cash.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    checkResults();
   }
 });
-purchaseBtn.addEventListener("click", checkCash);
 
 updateUI();

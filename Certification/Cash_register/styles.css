@@ -44,7 +44,7 @@ margin: 2rem 0;
 
 /*** input section  ***/
 
-.input-section {
+.input-div {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -65,7 +65,7 @@ label {
   margin: 0.5rem 0;
 }
 
-input {
+.user-input {
   width: 220px;
   height: 40px;
   font-size: 1.2rem;
@@ -152,19 +152,19 @@ input {
   background-color: black;
 }
 
-#container-info{
+.cash-drawer-display{
   background-color: white;
   padding: 10px;
   width: 55%;
   color: black;
 }
-#container-info h2{
+.cash-drawer-display h2{
   color: black;
   font-size: 1.2rem;
   margin-bottom: 6px;
   font-weight: bold;
 }
-.container-info p{
+.cash-drawer-display p{
   color: black;
   font-size: 1.1rem;
 }
