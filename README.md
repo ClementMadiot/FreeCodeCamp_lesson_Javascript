@@ -142,6 +142,18 @@ Algorithmic thinking involves the ability to break down complex problems into a 
 In this Dice game project, I learn how to manage game state, implement game logic for rolling dice, keeping score, and applying rules for various combinations.
 
 This project covers concepts such as **event handling**, **array manipulation**, **conditional logic**, and **updating the user interface dynamically** based on game state.
+</details>
+
+<details>
+<summary>5 Project Certification: Build a Pokémon Search App </summary>
+
+## Authors_page : Learn Fetch and Promises by Building an fCC Authors Page
+
+One common aspect of web development is learning how to fetch data from an external API, then work with asynchronous JavaScript.
+
+This freeCodeCamp authors page project show me how to use the **fetch method**, then **dynamically update the DOM** to display the fetched data.
+
+This project also teach me how to **paginate my data** so me can load results in batches.
 
 
 
