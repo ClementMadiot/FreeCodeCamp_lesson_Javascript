@@ -155,6 +155,9 @@ This freeCodeCamp authors page project show me how to use the **fetch method**, 
 
 This project also teach me how to **paginate my data** so me can load results in batches.
 
+## Leaderboard : Learn Asynchronous Programming by Building an fCC Forum Leaderboard
 
+JavaScript is an asynchronous programming language. And this project help me to proficiency in asynchronous concepts.
 
+This project cover the **Fetch API**, **promises**, **Async/Await**, and the **try..catch** statement.
 </details>
