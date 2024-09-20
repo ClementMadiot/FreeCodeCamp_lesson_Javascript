@@ -93,9 +93,7 @@ fetchData();
 // display post
 const showLatestPosts = (data) => {
   const {
-    topic_list: { topics },
-    users,
-  } = data;
+    topic_list: { topics },users} = data;
   // const {topics} = topic_list
   postsContainer.innerHTML = topics
     .map((item) => {
@@ -109,13 +107,13 @@ const showLatestPosts = (data) => {
         category_id,
         bumped_at,
       } = item;
-      return html`
+      return `
         <tr>
           <td>
             <p class="post-title">${title}${forumCategory(category_id)}</p>
           </td>
           <td>
-          <div class="avatar-container">${avatars(posters,id)}</div>
+          <div class="avatar-container">${avatars(posters,users)}</div>
           </td>
           <td>${posts_count - 1}</td>
           <td>${viewCount(views)}</td>
