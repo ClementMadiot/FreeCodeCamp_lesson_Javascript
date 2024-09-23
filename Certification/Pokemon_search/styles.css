@@ -49,8 +49,12 @@ main {
   flex-direction: column;
 }
 
+.fcc-logo {
+  margin: 1rem 0;
+}
+
 /* header  */
-img {
+#sprite {
   width: 180px;
 }
 
@@ -153,7 +157,7 @@ form {
   height: auto;
 }
 
-#name-or-id {
+#types {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
@@ -190,10 +194,14 @@ table {
 tr {
   border-bottom: 5px solid var(--light-white);
 }
-td, th {
+
+td,
+th {
   text-align: center;
   padding: 8px;
 }
-th:nth-child(even), td:nth-child(even) {
+
+th:nth-child(even),
+td:nth-child(even) {
   border-left: 5px solid var(--light-white);
 }
