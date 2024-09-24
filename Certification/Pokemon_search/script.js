@@ -34,6 +34,7 @@ const displayPokemon = (data) => {
     .then((data) => {
       weight.textContent = "Weight: " + data.weight;
       height.textContent = "Height: " + data.height;
+      // console.log(data);
       img.src = data.sprites.front_default;
       for (let i = 0; i < data.types.length; i++) {
         const typeName = data.types[i].type.name;
@@ -65,16 +66,17 @@ const checkPokemon = (data) => {
     const pokemon = results[i];
     const { name, id } = pokemon;
     if (value.toLowerCase() === name || value == id) {
-      console.log(name);
+      // console.log(name);
       displayPokemon(pokemon);
       return;
     }
   }
-  errorDisplay();
+  errorDisplay()
 };
 
-const errorDisplay = () => {
+const errorDisplay = (err) => {
   alert("Pokémon not found");
+  console.error(`Pokémon not found: ${err}`);
   resetDisplay();
 };
 
@@ -82,6 +84,7 @@ const errorDisplay = () => {
 const resetDisplay = () => {
   types.textContent = "";
   imgContainer[0].innerHTML = "";
+  // stats
   pokemonName.textContent = "";
   pokemonId.textContent = "";
   weight.textContent = "";
@@ -107,7 +110,7 @@ const fetchPokemon = async () => {
       searchInput.value = "";
     });
   } catch (err) {
-    console.log(err);
+    errorDisplay(err)
   }
 };
 fetchPokemon();
