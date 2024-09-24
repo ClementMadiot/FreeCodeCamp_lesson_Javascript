@@ -21,11 +21,6 @@ const dataPokemon =
 
 // display pokemon name, id, url
 const displayPokemon = (data) => {
-  const img = document.createElement("img");
-  img.setAttribute("id", "sprite");
-  img.alt = data.name;
-  imgContainer[0].appendChild(img);
-
   pokemonName.textContent = data.name;
   pokemonId.textContent = "#" + data.id;
 
@@ -34,15 +29,9 @@ const displayPokemon = (data) => {
     .then((data) => {
       weight.textContent = "Weight: " + data.weight;
       height.textContent = "Height: " + data.height;
-      // console.log(data);
-      img.src = data.sprites.front_default;
+      imgContainer[0].innerHTML = `<img src="${data.sprites.front_default}" alt="${data.name}" id="sprite">`;
       for (let i = 0; i < data.types.length; i++) {
-        const typeName = data.types[i].type.name;
-        const type = document.createElement("span");
-        type.classList.add("types");
-        types.appendChild(type);
-        type.textContent = typeName;
-        type.style.backgroundColor = `var(--${typeName})`;
+        types.innerHTML = data.types.map(item => `<span class="types" style="background: var(--${item.type.name})">${item.type.name}</span>`).join(' ');
       }
       hp.textContent = data.stats[0].base_stat;
       attack.textContent = data.stats[1].base_stat;
@@ -66,29 +55,30 @@ const checkPokemon = (data) => {
     const pokemon = results[i];
     const { name, id } = pokemon;
     if (value.toLowerCase() === name || value == id) {
-      // console.log(name);
       displayPokemon(pokemon);
       return;
     }
   }
-  errorDisplay()
+  errorDisplay();
 };
 
 const errorDisplay = (err) => {
   alert("Pokémon not found");
-  console.error(`Pokémon not found: ${err}`);
+  // console.error(`Pokémon not found: ${err}`);
+  console.log(`Pokémon not found: ${err}`);
   resetDisplay();
 };
 
 // reset display
 const resetDisplay = () => {
-  types.textContent = "";
-  imgContainer[0].innerHTML = "";
+  const sprite = document.getElementById("sprite");
+  if (sprite) sprite.remove();
   // stats
   pokemonName.textContent = "";
   pokemonId.textContent = "";
   weight.textContent = "";
   height.textContent = "";
+  types.textContent = "";
   hp.textContent = "";
   attack.textContent = "";
   defense.textContent = "";
@@ -110,7 +100,9 @@ const fetchPokemon = async () => {
       searchInput.value = "";
     });
   } catch (err) {
-    errorDisplay(err)
+    resetDisplay();
+    alert("Pokémon not found");
+    console.log(`Pokémon not found: ${err}`);
   }
 };
 fetchPokemon();
