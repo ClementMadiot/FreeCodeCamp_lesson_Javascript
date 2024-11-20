@@ -1,3 +1,7 @@
+// In this project, I learn how to work with the **JavaScript Date object**, including its methods and properties. I also learn how to correctly format dates.
+
+// This project cover concepts such as the **getDate()**, **getMonth()**, and **getFullYear()** methods.
+
 const currentDateParagraph = document.getElementById("current-date");
 const dateOptionsSelectElement = document.getElementById("date-options");
 // date: the new operator to create a new Date object that returns a string with the current date and time

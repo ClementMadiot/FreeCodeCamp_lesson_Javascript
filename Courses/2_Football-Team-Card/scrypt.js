@@ -1,3 +1,6 @@
+// In this project, I build a set of football team cards and learn about **nested objects**, **object destructuring**, and **default parameters**.
+// This project cover concepts like, **default parameters, Object.freeze()**, and reinforce my knowledge of the **switch statement** and **map()** method.
+
 const teamName = document.getElementById("team");
 const typeOfSport = document.getElementById("sport");
 const worldCupYear = document.getElementById("year");

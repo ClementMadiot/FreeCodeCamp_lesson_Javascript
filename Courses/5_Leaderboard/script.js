@@ -1,3 +1,7 @@
+// JavaScript is an asynchronous programming language. And this project help me to proficiency in asynchronous concepts.
+
+// This project cover the **Fetch API**, **promises**, **Async/Await**, and the **try..catch** statement.
+
 // url
 const forumLatest =
   "https://cdn.freecodecamp.org/curriculum/forum-latest/latest.json";

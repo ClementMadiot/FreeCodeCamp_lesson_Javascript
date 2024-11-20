@@ -1,3 +1,6 @@
+// In this calorie counter project, I learn how to validate user input, perform calculations based on that input, and dynamically update I interface to display the results.
+// In this practice project, I learn basic **regular expressions, template literals, the addEventListener() method**, and more.
+
 const calorieCounter = document.getElementById('calorie-counter');
 const budgetNumberInput = document.getElementById('budget');
 const entryDropdown = document.getElementById('entry-dropdown');

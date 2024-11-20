@@ -1,3 +1,5 @@
+// I build a decimal-to-binary converter using JavaScript. I learn the fundamental concepts of **recursion**, explore the **call stack**, and build out a visual representation of the **recursion process** through an animation.
+
 const numberInput = document.getElementById("number-input");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");

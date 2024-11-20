@@ -1,3 +1,5 @@
+// In this platformer game project, I continue to learn about classes, objects, inheritance, and encapsulation. I also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability.
+
 const startBtn = document.getElementById("start-btn");
 const canvas = document.getElementById("canvas");
 const startScreen = document.querySelector(".start-screen");

@@ -1,3 +1,5 @@
+// In this TODO application, I learn how to handle form inputs, manage local storage, perform CRUD (Create, Read, Update, Delete) operations on tasks, implement event listeners, and toggle UI elements.
+
 const taskForm = document.getElementById("task-form");
 const confirmCloseDialog = document.getElementById("confirm-close-dialog");
 const openTaskFormBtn = document.getElementById("open-task-form-btn");

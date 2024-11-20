@@ -1,3 +1,6 @@
+// Learn some essential string and array methods like the **find(), forEach(), map()**, and **join()**. These methods are crucial for developing dynamic web applications.
+// I code a basic MP3 player. The project covers fundamental concepts such as handling audio playback, managing a playlist, implementing play, pause, next, previous, and shuffle functionalities. I learn how to dynamically update I user interface based on the current song.
+
 const playlistSongs = document.getElementById("playlist-songs");
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");

@@ -1,4 +1,9 @@
-// In this project, I build an algorithmic thinking by building a dice game. There are a total of 6 rounds and for each round, the player can roll the dice up to 3 times and collect a score.
+// Algorithmic thinking involves the ability to break down complex problems into a sequence of well-defined, step-by-step instructions.
+// In this Dice game project, I learn how to manage game state, implement game logic for rolling dice, keeping score, and applying rules for various combinations.
+
+// This project covers concepts such as **event handling**, **array manipulation**, **conditional logic**, and **updating the user interface dynamically** based on game state.
+
+/// In this project, I build an algorithmic thinking by building a dice game. There are a total of 6 rounds and for each round, the player can roll the dice up to 3 times and collect a score.
 
 const listOfAllDice = document.querySelectorAll(".die");
 const scoreInputs = document.querySelectorAll("#score-options input");

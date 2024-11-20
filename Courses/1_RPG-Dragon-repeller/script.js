@@ -1,3 +1,5 @@
+// In this practice project, I learn fundamental programming concepts in JavaScript by coding my own Role Playing Game. I learn how to work with **arrays**, **strings**, **objects**, **functions**, **loops**, **if/else** statements, and more.
+
 let xp = 0
 let health = 100
 let gold = 250

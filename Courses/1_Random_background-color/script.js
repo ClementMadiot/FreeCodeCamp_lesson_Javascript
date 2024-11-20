@@ -1,3 +1,5 @@
+// In this project, I help CamperBot to build a **random background color changer** and help him to find and fix errors.
+
 const body = document.querySelector('body')
 const bgHexCodeSpanElement = document.querySelector('#bg-hex-code')
 const btn = document.querySelector("#btn");

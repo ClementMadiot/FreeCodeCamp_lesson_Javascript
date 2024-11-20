@@ -1,3 +1,9 @@
+// OOP, or Object Oriented Programming, is one of the major approaches to the software development process. In OOP, developers use objects and classes to structure their code.
+
+// In this shopping cart project, I learn how to define **classes** and use them. I create class **instances and implement** methods for data manipulation.
+
+// This project will cover concepts like the **ternary operator**, the **spread operator**, the **this keyword**, and more.
+
 // containers
 const cartContainer = document.getElementById("cart-container");
 const productsContainer = document.getElementById("products-container");

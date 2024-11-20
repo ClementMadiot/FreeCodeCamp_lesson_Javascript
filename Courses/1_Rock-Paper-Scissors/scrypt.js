@@ -1,3 +1,5 @@
+// In this mini project, I review conditionals, **functions, getElementById**, and more. This project give me an opportunity to solve small problems and get a better understanding of the basics.
+
 // buttons
 const rockBtn = document.getElementById("rock-btn");
 const paperBtn = document.getElementById("paper-btn");

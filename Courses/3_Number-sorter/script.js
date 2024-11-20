@@ -1,3 +1,8 @@
+// In this number sorter project, I learn how to implement and visualize different sorting algorithms like bubble sort, selection sort, and insertion sort – all with JavaScript.
+
+// This project help me to understand the fundamental concepts behind these algorithms, and how I can apply them to sort numerical data in web applications.
+
+
 const sortButton = document.getElementById("sort");
 
 const sortInputArray = (event) => {
